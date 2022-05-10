@@ -66,49 +66,74 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
             'destroy' => 'system-dictionary.destroy',
         ]);
     });
-    Route::group(['prefix'=>'adsl','name'=>'adsl'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('adsl');
+    Route::group(['prefix'=>'Overview','name'=>'overview'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('technical-global-view');
     });
-    Route::group(['prefix'=>'fixes','name'=>'fixes'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('fixes');
+
+    Route::group(['prefix'=>'adsl-list','name'=>'adsl-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('adsl-list');
     });
-    Route::group(['prefix'=>'fo-internet','name'=>'fo-internet'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('fo-internet');
+
+    Route::group(['prefix'=>'fixes-list','name'=>'fixes-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('fixes-list');
     });
-    Route::group(['prefix'=>'t-penetration','name'=>'t-penetration'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('t-penetration');
+
+    Route::group(['prefix'=>'fo-internet-list','name'=>'fo-internet-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('fo-internet-list');
     });
-    Route::group(['prefix'=>'mobile-prepaid-b','name'=>'mobile-prepaid-b'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('mobile-prepaid-b');
+
+    Route::group(['prefix'=>'penetration-taux-list','name'=>'penetration-taux-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('penetration-taux-list');
     });
-    Route::group(['prefix'=>'mobile-prepaid-n','name'=>'mobile-prepaid-n'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('mobile-prepaid-n');
+
+
+
+
+    Route::group(['prefix'=>'commercial-global-view','name'=>'commercial-global-view'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('commercial-global-view');
     });
-    Route::group(['prefix'=>'mobile-bills','name'=>'mobile-bills'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('mobile-bills');
+
+    Route::group(['prefix'=>'mobile-prepay-b-list','name'=>'mobile-prepay-b-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('mobile-prepay-b-list');
     });
-    Route::group(['prefix'=>'3Gkey','name'=>'3Gkey'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('3Gkey');
+
+    Route::group(['prefix'=>'mobile-prepay-n-list','name'=>'mobile-prepay-n-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('mobile-prepay-n-list');
     });
-    Route::group(['prefix'=>'netbox','name'=>'netbox'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('netbox');
+
+    Route::group(['prefix'=>'mobile-bills-list','name'=>'mobile-bills-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('mobile-bills-list');
     });
-    Route::group(['prefix'=>'m2m','name'=>'m2m'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('m2m');
+
+    Route::group(['prefix'=>'key-3g-list','name'=>'key-3g-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('key-3g-list');
     });
-    Route::group(['prefix'=>'waffi','name'=>'waffi'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('waffi');
+
+    Route::group(['prefix'=>'Netbox-list','name'=>'Netbox-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('Netbox-list');
     });
-    Route::group(['prefix'=>'rapido2020','name'=>'rapido2020'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('rapido2020');
+
+    Route::group(['prefix'=>'m2m-list','name'=>'m2m-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('m2m-list');
     });
-    Route::group(['prefix'=>'other-th','name'=>'other-th'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('other-th');
+
+    Route::group(['prefix'=>'wafi-adsl-list','name'=>'wafi-adsl-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('wafi-adsl-list');
     });
-    Route::group(['prefix'=>'portability-IN-prepaid','name'=>'portability-IN-prepaid'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('portability-IN-prepaid');
+
+    Route::group(['prefix'=>'Rapido-2020-list','name'=>'Rapido-2020-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('Rapido-2020-list');
     });
-    Route::group(['prefix'=>'portability-IN-mobile-bill','name'=>'portability-IN-mobile-bill'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('portability-IN-mobile-bill');
+
+    Route::group(['prefix'=>'Autres-thd-list','name'=>'Autres-thd-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('Autres-thd-list');
+    });
+
+    Route::group(['prefix'=>'portability-prepay-list','name'=>'portability-prepay-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('portability-prepay-list');
+    });
+
+    Route::group(['prefix'=>'portability-prepay-bills-list','name'=>'portability-prepay-bills-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('portability-prepay-bills-list');
     });
 });
