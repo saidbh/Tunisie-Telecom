@@ -136,4 +136,8 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
     Route::group(['prefix'=>'portability-prepay-bills-list','name'=>'portability-prepay-bills-list'],function(){
         Route::get('/',function(){return redirect('admin.dashboard');})->name('portability-prepay-bills-list');
     });
+
+    Route::group(['prefix'=>'follow-quality','name'=>'follow-quality'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('follow-quality');
+    });
 });
