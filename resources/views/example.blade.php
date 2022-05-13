@@ -28,31 +28,36 @@
                             </div>
                         </div>
                         <div class="iq-card-body">
-                            <!--Teacher form-->
                             <div class="table-responsive table-sm">
                                 <table id="teacher-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
                                     <thead>
                                     <tr class="text-center">
                                         <th>ID</th>
-                                        <th>Avatar</th>
-                                        <th>Nom</th>
-                                        <th>prénom</th>
-                                        <th>Type</th>
-                                        <th>Niveau</th>
-                                        <th><a data-toggle="tooltip" data-placement="top" title="Prix d'heure">HD</a></th>
-                                        <th>Email</th>
-                                        <th>Agence</th>
-                                        <th>Tél</th>
-                                        <th>Adresse</th>
+                                        <th>Date debut</th>
+                                        <th>Date de fin</th>
+                                        <th>type d'objectif</th>
+                                        <th>Objectif</th>
+                                        <th>Realisation</th>
+                                        <th>Taux de realisation</th>
+                                        <th>Reste par objectif</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
+                                    <tr>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <!--Teacher form-->
                         </div>
                     </div>
                 </div>

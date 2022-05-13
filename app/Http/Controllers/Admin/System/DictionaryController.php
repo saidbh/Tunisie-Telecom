@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers\Admin\System;
 
+use App\Models\DataOffres;
+use App\Models\departements;
+use App\Models\ObjectifTypes;
+use App\Models\offres;
+use App\Models\OffreType;
+use Illuminate\Database\QueryException;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class DictionaryController extends Controller
 {
@@ -14,7 +21,12 @@ class DictionaryController extends Controller
      */
     public function index()
     {
-        return view('admin.system.dictionary.index');
+        $offres = offres::all();
+        $depart = departements::all();
+        $objectifs = ObjectifTypes::all();
+        $offretype = OffreType::all();
+        $departement = departements::all();
+        return view('admin.system.dictionary.index', compact('offres','depart','objectifs','offretype','departement'));
     }
 
     /**
@@ -35,7 +47,45 @@ class DictionaryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        switch ($request->action)
+        {
+            case 'objectifs':
+                try {
+                    $objectif = new ObjectifTypes();
+                    $objectif->name = $request->objectifs;
+                    $objectif->description = $request->description;
+                    $objectif->save();
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Objectif ajouter avec succés');
+                return redirect()->route('system-dictionary');
+            case 'offres':
+                try {
+                    $offre = new OffreType();
+                    $offre->name = $request->offres;
+                    $offre->description = $request->description;
+                    $offre->save();
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Offre ajouter avec succés');
+                return redirect()->route('system-dictionary');
+            case 'departement':
+                try {
+                    $dep = new departements();
+                    $dep->name = $request->departement;
+                    $dep->description = $request->description;
+                    $dep->save();
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Departement ajouter avec succés');
+                return redirect()->route('system-dictionary');
+        }
     }
 
     /**
@@ -69,7 +119,45 @@ class DictionaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        switch ($request->action)
+        {
+            case 'objectifs':
+                try {
+                    ObjectifTypes::where('id',$id)->update([
+                        'name' => $request->objectifs,
+                        'description' => $request->description,
+                    ]);
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Objectif modifier avec succés');
+                return redirect()->route('system-dictionary');
+            case 'offres':
+                try {
+                    OffreType::where('id',$id)->update([
+                        'name' => $request->offres,
+                        'description' => $request->description,
+                    ]);
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Offre modifier avec succés');
+                return redirect()->route('system-dictionary');
+            case 'departement':
+                try {
+                    departements::where('id',$id)->update([
+                        'name' => $request->departement,
+                        'description' => $request->description,
+                    ]);
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Departement modifier avec succés');
+                return redirect()->route('system-dictionary');
+        }
     }
 
     /**
@@ -78,8 +166,37 @@ class DictionaryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        switch ($request->action)
+        {
+            case 'objectifs':
+                try {
+                    ObjectifTypes::where('id',$id)->delete();
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Objectif supprimer avec succés');
+                return redirect()->route('system-dictionary');
+            case 'offres':
+                try {
+                    OffreType::where('id',$id)->delete();
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Offre supprimer avec succés');
+                return redirect()->route('system-dictionary');
+            case 'departement':
+                try {
+                    departements::where('id',$id)->delete();
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Departement supprimer avec succés');
+                return redirect()->route('system-dictionary');
+        }
     }
 }

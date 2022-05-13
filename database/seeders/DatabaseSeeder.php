@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SubCategoriesSeeder::class);
         $this->call(AccessSeeder::class);
         $this->call(PermissionsSeeder::class);
+        $this->call(departementSeeder::class);
+        $this->call(objectifsSeeder::class);
+        $this->call(technicOffresSeeder::class);
     }
 }

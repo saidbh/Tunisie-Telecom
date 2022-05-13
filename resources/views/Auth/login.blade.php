@@ -1,67 +1,3 @@
-{{--<!DOCTYPE html>--}}
-{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
-{{--    <head>--}}
-{{--        <meta charset="utf-8">--}}
-{{--        <meta name="viewport" content="width=device-width, initial-scale=1">--}}
-{{--        <title>Laravel</title>--}}
-{{--        <!-- Fonts -->--}}
-{{--        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">--}}
-{{--        <!-- Scripts -->--}}
-{{--        <script src="{{ asset('js/app.js') }}" defer></script>--}}
-{{--        <!-- Fonts -->--}}
-{{--        <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
-{{--        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
-{{--        <!-- Styles -->--}}
-{{--        <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
-{{--    </head>--}}
-{{--    <body class="antialiased">--}}
-{{--        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">--}}
-{{--            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">--}}
-{{--                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">--}}
-{{--                    <div class="container">--}}
-{{--                        <div class="row justify-content-md-center">--}}
-{{--                            <div class="col-md-4 justify-content-center">--}}
-{{--                                @if (Session::has('error'))--}}
-{{--                                    <div class="alert alert-danger m-0">{{ Session::get('error') }}</div>--}}
-{{--                                @endif--}}
-{{--                                @if (Session::has('success'))--}}
-{{--                                    <div class="alert alert-success m-0">{{ Session::get('success') }}</div>--}}
-{{--                                @endif--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="container">--}}
-{{--                        <div class="row justify-content-md-center">--}}
-{{--                            <div class="col-md-4 justify-content-center">--}}
-{{--                                <form action="{{route('login')}}" method="post" enctype="multipart/form-data">--}}
-{{--                                    @csrf--}}
-{{--                                    <div class="mb-3">--}}
-{{--                                        <label for="email" class="form-label">Email address</label>--}}
-{{--                                        <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">--}}
-{{--                                        <div id="email" class="invalid-feedback">--}}
-{{--                                            Please provide a valid city.--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="mb-3">--}}
-{{--                                        <label for="password" class="form-label">Password</label>--}}
-{{--                                        <input type="password" class="form-control" id="password" name="password">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="mb-3 form-check">--}}
-{{--                                        <input type="checkbox" class="form-check-input" name="remember_me" id="remember_me">--}}
-{{--                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="d-grid gap-2">--}}
-{{--                                        <button type="submit" class="btn btn-primary" type="button">Login</button>--}}
-{{--                                    </div>--}}
-{{--                                </form>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </body>--}}
-{{--</html>--}}
 @extends('admin.master')
 @section('content')
     <section class="sign-in-page bg-white">
@@ -97,7 +33,7 @@
                             </form>
                         </div>
                         <div class="sign-info">
-                            {{-- <span class="dark-color d-inline-block line-height-2">Vous n'avez pas un compte? <a href={{route('registration')}}>S'inscrire</a></span> --}}
+                             <span class="dark-color d-inline-block line-height-2"><a href=""> Mot de passe oublié </a></span>
                             <ul class="iq-social-media">
                                 <li><a href="" target="_blank"><i class="ri-link"></i></a></li>
                                 <li><a href="" target="_blank"><i class="ri-facebook-box-line"></i></a></li>

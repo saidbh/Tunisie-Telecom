@@ -165,6 +165,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         Lavary\Menu\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -235,7 +236,7 @@ return [
         'Menu' => Lavary\Menu\Facade::class,
 //        'Form' => Collective\Html\FormFacade::class,
 //        'Html' => Collective\Html\HtmlFacade::class,
-//        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ])->toArray(),
 
 ];

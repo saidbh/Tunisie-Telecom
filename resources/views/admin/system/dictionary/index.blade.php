@@ -23,9 +23,10 @@
                             </div>
                             <div class="iq-card-body">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <a class="nav-link dictionary-link active" id="v-pills-currencies-tab" data-toggle="pill" href="#v-pills-currencies" role="tab" aria-controls="v-pills-currencies" aria-selected="true">---</a>
-                                    <div class="border-top my-1"></div>
-                                    <a class="nav-link dictionary-link" id="v-pills-thirdsCategories-tab" data-toggle="pill" href="#v-pills-thirdsCategories" role="tab" aria-controls="v-pills-thirdsCategories" aria-selected="false">---</a>
+                                    <a class="nav-link dictionary-link active" id="v-pills-currencies-tab" data-toggle="pill" href="#v-pills-currencies" role="tab" aria-controls="v-pills-currencies" aria-selected="true">Objectifs</a>
+{{--                                    <div class="border-top my-1"></div>--}}
+                                    <a class="nav-link dictionary-link" id="v-pills-thirdsCategories-tab" data-toggle="pill" href="#v-pills-thirdsCategories" role="tab" aria-controls="v-pills-thirdsCategories" aria-selected="false">Offres</a>
+                                    <a class="nav-link dictionary-link" id="v-pills-departements-tab" data-toggle="pill" href="#v-pills-departements" role="tab" aria-controls="v-pills-departements" aria-selected="false">Départements</a>
                                 </div>
                             </div>
                         </div>
@@ -33,10 +34,13 @@
                     <div class="col-lg-9 col-md-8">
                         <div class="tab-content mt-0" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="v-pills-currencies" role="tabpanel" aria-labelledby="v-pills-currencies-tab">
-
+                                @include('admin.system.dictionary.objectifs.index')
                             </div>
                             <div class="tab-pane fade" id="v-pills-thirdsCategories" role="tabpanel" aria-labelledby="v-pills-thirdsCategories-tab">
-
+                                @include('admin.system.dictionary.offres_tech.index')
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-departements" role="tabpanel" aria-labelledby="v-pills-departements-tab">
+                                @include('admin.system.dictionary.departement.index')
                             </div>
                         </div>
                     </div>

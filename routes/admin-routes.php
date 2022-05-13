@@ -66,28 +66,50 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
             'destroy' => 'system-dictionary.destroy',
         ]);
     });
+
     Route::group(['prefix'=>'Overview','name'=>'overview'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('technical-global-view');
+
+        Route::resource('deptech-Overview', Deptech\OverviewController::class)->names([
+            'index' => 'technical-global-view',
+            'create' => 'technical-global-view.create',
+            'store' => 'technical-global-view.store',
+            'edit' => 'technical-global-view.edit',
+            'update' => 'technical-global-view.update',
+            'destroy' => 'technical-global-view.destroy'
+        ]);
     });
 
-    Route::group(['prefix'=>'adsl-list','name'=>'adsl-list'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('adsl-list');
+    Route::group(['prefix'=>'offres-list','name'=>'offres-list'],function(){
+
+        Route::resource('deptech-offres', Deptech\OffresController::class)->names([
+            'index' => 'technical-offres-list',
+            'create' => 'technical-offres-list.create',
+            'store' => 'technical-offres-list.store',
+            'edit' => 'technical-offres-list.edit',
+            'update' => 'technical-offres-list.update',
+            'destroy' => 'technical-offres-list.destroy'
+        ]);
     });
 
-    Route::group(['prefix'=>'fixes-list','name'=>'fixes-list'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('fixes-list');
+    Route::group(['prefix'=>'follow-quality','name'=>'follow-quality'],function(){
+        Route::resource('ADSL', Deptech\OffresController::class)->names([
+            'index' => 'offres-list',
+            'create' => 'offres-list.create',
+            'store' => 'offres-list.store',
+            'edit' => 'offres-list.edit',
+            'update' => 'offres-list.update',
+            'destroy' => 'offres-list.destroy'
+        ]);
+
+        Route::resource('Fixes', Deptech\OffresController::class)->names([
+            'index' => 'fixes-list',
+            'create' => 'fixes-list.create',
+            'store' => 'fixes-list.store',
+            'edit' => 'fixes-list.edit',
+            'update' => 'fixes-list.update',
+            'destroy' => 'fixes-list.destroy'
+        ]);
     });
-
-    Route::group(['prefix'=>'fo-internet-list','name'=>'fo-internet-list'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('fo-internet-list');
-    });
-
-    Route::group(['prefix'=>'penetration-taux-list','name'=>'penetration-taux-list'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('penetration-taux-list');
-    });
-
-
-
 
     Route::group(['prefix'=>'commercial-global-view','name'=>'commercial-global-view'],function(){
         Route::get('/',function(){return redirect('admin.dashboard');})->name('commercial-global-view');
@@ -117,8 +139,8 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
         Route::get('/',function(){return redirect('admin.dashboard');})->name('m2m-list');
     });
 
-    Route::group(['prefix'=>'wafi-adsl-list','name'=>'wafi-adsl-list'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('wafi-adsl-list');
+    Route::group(['prefix'=>'wafi-offres-list','name'=>'wafi-offres-list'],function(){
+        Route::get('/',function(){return redirect('admin.dashboard');})->name('wafi-offres-list');
     });
 
     Route::group(['prefix'=>'Rapido-2020-list','name'=>'Rapido-2020-list'],function(){
@@ -137,7 +159,4 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
         Route::get('/',function(){return redirect('admin.dashboard');})->name('portability-prepay-bills-list');
     });
 
-    Route::group(['prefix'=>'follow-quality','name'=>'follow-quality'],function(){
-        Route::get('/',function(){return redirect('admin.dashboard');})->name('follow-quality');
-    });
 });
