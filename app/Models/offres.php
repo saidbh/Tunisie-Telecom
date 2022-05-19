@@ -47,8 +47,8 @@ class offres extends Model
         'objectif_types_id',
         'departements_id',
         'documents_id',
-        'date_from',
-        'date_to',
+        'objectif_date',
+        'objectifs',
         'created_at',
         'updated_at',
     ];

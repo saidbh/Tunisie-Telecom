@@ -89,6 +89,16 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
             'update' => 'technical-offres-list.update',
             'destroy' => 'technical-offres-list.destroy'
         ]);
+
+        Route::resource('realisation-offres', Deptech\RealisationController::class)->names([
+            'index' => 'realisation-offres-list',
+            'create' => 'realisation-offres-list.create',
+            'store' => 'realisation-offres-list.store',
+            'show' => 'realisation-offres-list.show',
+            'edit' => 'realisation-offres-list.edit',
+            'update' => 'realisation-offres-list.update',
+            'destroy' => 'realisation-offres-list.destroy'
+        ]);
     });
 
     Route::group(['prefix'=>'follow-quality','name'=>'follow-quality'],function(){

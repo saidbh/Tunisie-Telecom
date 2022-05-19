@@ -44,7 +44,7 @@ class DataOffres extends Model
     protected $fillable = [
         'id',
         'offres_id',
-        'objectifs',
+        'realisation_date',
         'realisation',
         'realisation_rate',
         'rest_per_objectifs',
@@ -52,4 +52,8 @@ class DataOffres extends Model
         'updated_at',
     ];
 
+    public function offre()
+    {
+        return $this->BelongsTo(offres::class,'offres_id','id');
+    }
 }

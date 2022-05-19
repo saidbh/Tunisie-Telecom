@@ -60,25 +60,25 @@
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <div class="form-group">
-                                                                            <label for="start_date">Date debut</label>
-                                                                            <input type="date" class="form-control" id="start_date" name="start_date" required>
+                                                                            <label for="objectif_date">Date </label>
+                                                                            <input type="month" class="form-control" id="objectif_date" name="objectif_date" required>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label for="end_date">Date fin</label>
-                                                                            <input type="date" class="form-control" id="end_date" name="end_date" required>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
                                                                     <div class="col-md-3">
                                                                         <div class="form-group">
                                                                             <label for="objectifs">Objectifs</label>
                                                                             <input type="text" class="form-control" id="objectifs" name="objectifs" required>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-3">
+{{--                                                                     <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label for="end_date">Date fin</label>
+                                                                            <input type="date" class="form-control" id="end_date" name="end_date" required>
+                                                                        </div>
+                                                                    </div> --}}
+                                                                </div>
+                                                                <div class="row">
+{{--                                                                     <div class="col-md-3">
                                                                         <div class="form-group">
                                                                             <label for="realisation">Realisation</label>
                                                                             <input type="text" class="form-control" id="realisation" name="realisation" required>
@@ -95,7 +95,7 @@
                                                                             <label for="rest_per_objectifs">Reste par objectifs</label>
                                                                             <input type="text" class="form-control" id="rest_per_objectifs" name="rest_per_objectifs" required>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> --}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -119,13 +119,13 @@
                                     <tr class="text-center">
                                         <th>ID</th>
                                         <th>Offre</th>
-                                        <th>Date debut</th>
-                                        <th>Date de fin</th>
+                                        <th>Date</th>
+{{--                                         <th>Date de fin</th> --}}
                                         <th>type d'objectif</th>
                                         <th>Objectif</th>
-                                        <th>Realisation</th>
+{{--                                         <th>Realisation</th>
                                         <th>Taux de realisation</th>
-                                        <th>Reste par objectif</th>
+                                        <th>Reste par objectif</th> --}}
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -134,15 +134,18 @@
                                     <tr class="text-center">
                                         <td>{{ $offres->id }}</td>
                                         <td>{{ $offres->OffreType->name }}</td>
-                                        <td>{{ date('Y-m-d', strtotime($offres->date_from)) }}</td>
-                                        <td>{{ date('Y-m-d', strtotime($offres->date_to)) }}</td>
+                                        <td>{{ $offres->objectif_date }}</td>
+                                        {{-- <td>{{ date('Y-m-d', strtotime($offres->date_to)) }}</td> --}}
                                         <td>{{ $offres->ObjectifType->name }}</td>
-                                        <td>{{ $offres->DataOffre->objectifs }}</td>
-                                        <td>{{ $offres->DataOffre->realisation }}</td>
+                                        <td>{{ $offres->objectifs }}</td>
+                                   {{--      <td>{{ $offres->DataOffre->realisation }}</td>
                                         <td>{{ $offres->DataOffre->realisation_rate }}</td>
-                                        <td>{{ $offres->DataOffre->rest_per_objectifs }}</td>
+                                        <td>{{ $offres->DataOffre->rest_per_objectifs }}</td> --}}
                                         <td>
                                             <div class="flex align-items-center list-user-action">
+                                                <span data-toggle="modal" data-target="#">
+                                                    <a data-toggle="tooltip" data-placement="top" title="Ajouter realisation" href="{{ route('realisation-offres-list.show',$offres->id) }}"><i class="ri-bar-chart-grouped-line"></i></a>
+                                                  </span>
                                                   <span data-toggle="modal" data-target="#editoffres">
                                                     <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{ route('technical-offres-list.edit',$offres->id) }}"><i class="ri-pencil-line"></i></a>
                                                   </span>
@@ -211,7 +214,7 @@
         $(document).ready(function() {
             $('#offre-table').DataTable({
                 "columnDefs": [{
-                    "targets": 9,
+                    "targets": 5,
                     "orderable": false
                 }],
                 language: {
