@@ -77,7 +77,7 @@ class RealisationController extends Controller
      */
     public function show($id)
     {
-        $offre = offres::find($id)->first();
+        $offre = offres::where('id',$id)->first();
         $realisations = DataOffres::where('offres_id',$id)->get();
         return view('admin.deptech.offres.realisations',compact('offre','realisations'));
     }
