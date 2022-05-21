@@ -34,7 +34,7 @@
                                             <select class="form-control" id="objectifs">
                                               <option></option>
                                               @foreach($offre as $off)
-                                              <option value="{{ $off->id }}" data-subtext="">{{ $off->OffreType->name }} {{ $off->ObjectifType->name }} {{ $off->objectifs }} DNT</option>
+                                              <option value="{{ $off->id }}" data-subtext="">{{ $off->OffreType->name }} {{ $off->ObjectifType->name }} {{ $off->objectifs }} </option>
                                               @endforeach
                                             </select>
                                           </div>
@@ -125,7 +125,7 @@
             show: true
           },
           zoom: {
-            enabled: false
+            enabled: true
           }
         },
         responsive: [{

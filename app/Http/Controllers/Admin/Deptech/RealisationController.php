@@ -90,8 +90,8 @@ class RealisationController extends Controller
      */
     public function edit($id)
     {
-        $offre = offres::where('id',$id)->first();
-        $realisation = DataOffres::where('offres_id',$id)->first();
+        $realisation = DataOffres::where('id',$id)->first();
+        $offre = offres::where('id',$realisation->offres_id)->first();
         return view('admin.deptech.offres.realisation.edit',compact('offre','realisation'));
     }
 
@@ -127,8 +127,9 @@ class RealisationController extends Controller
             Session::flash('error', $e->getMessage());
             return redirect()->back()->withInput();
         }
+        $ids = DataOffres::where('id',$id)->first();
         Session::flash('success', 'Realisation mis a jour avec succés');
-        return redirect()->route('realisation-offres-list.show',$id);
+        return redirect()->route('realisation-offres-list.show',$ids->offres_id);
     }
 
     /**

@@ -60,7 +60,7 @@ class OffresController extends Controller
             !offres::where('offre_type_id',$request->offre_type)
             ->where('objectif_types_id',$request->objectif_type)
             ->where('objectif_date',$request->objectif_date)
-            ->get()
+            ->first()
             )
             {
                 $offre = new offres();
@@ -71,9 +71,11 @@ class OffresController extends Controller
                 $offre->objectif_date = $request->objectif_date;
                 $offre->objectifs = $request->objectifs;
                 $offre->save();
+            }else
+            {
+                Session::flash('error', 'Offre existe deja !');
+                return redirect()->route('technical-offres-list');
             }
-            Session::flash('error', 'Offre existe deja !');
-            return redirect()->route('technical-offres-list');
         } catch (QueryException $e) {
             Session::flash('error', $e->getMessage());
             return redirect()->back()->withInput();
