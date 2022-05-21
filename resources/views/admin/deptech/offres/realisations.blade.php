@@ -101,9 +101,9 @@
                                         <td>
                                             <div class="flex align-items-center list-user-action">
                                                   <span data-toggle="modal" data-target="#editoffres{{ $realisation->id }}">
-                                                    <a data-toggle="tooltip" data-placement="top" title="Modifier" href="#"><i class="ri-pencil-line"></i></a>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{ route('realisation-offres-list.edit',$realisation->id) }}"><i class="ri-pencil-line"></i></a>
                                                   </span>
-                                                  <div class="modal fade" id="editoffres{{ $realisation->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                                  <div class="modal fade" id="#" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-xl" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -112,7 +112,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="{{ route('realisation-offres-list.update',$realisation->id) }}" method="post" enctype="multipart/form-data" class="was-validated">
+                                                            <form action="" method="post" enctype="multipart/form-data" class="was-validated">
                                                                 @csrf
                                                                 @method('put')
                                                             <div class="modal-body">
@@ -126,20 +126,20 @@
                                                                     </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
-                                                                                <label for="realisation">Realisation</label>
-                                                                                <input type="text" class="form-control" id="realisation1" name="realisation" value="{{ $realisation->realisation }}" required>
+                                                                                <label for="realisation{{ $realisation->id }}">Realisation</label>
+                                                                                <input type="text" class="form-control" id="realisation{{ $realisation->id }}" name="realisation" value="{{ $realisation->realisation }}" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
-                                                                                <label for="realisation_rate">Taux de realisation</label>
-                                                                                <input type="text" class="form-control" id="realisation_rate1" name="realisation_rate" value="{{ $realisation->realisation_rate }}" required>
+                                                                                <label for="realisation_rate{{ $realisation->id }}">Taux de realisation</label>
+                                                                                <input type="text" class="form-control" id="realisation_rate{{ $realisation->id }}" name="realisation_rate" value="{{ $realisation->realisation_rate }}" readonly required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
-                                                                                <label for="rest_per_objectifs">Reste par objectifs</label>
-                                                                                <input type="text" class="form-control" id="rest_per_objectifs1" name="rest_per_objectifs" value="{{ $realisation->rest_per_objectifs }}" required>
+                                                                                <label for="rest_per_objectifs{{ $realisation->id }}">Reste par objectifs</label>
+                                                                                <input type="text" class="form-control" id="rest_per_objectifs{{ $realisation->id }}" name="rest_per_objectifs" value="{{ $realisation->rest_per_objectifs }}" readonly required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -211,9 +211,7 @@
             align-items: center;
             padding: 0 10px;
         }
-
     </style>
-
     <script>
         $(document).ready(function() {
             $('#offre-table').DataTable({
@@ -237,7 +235,7 @@
                 if($(this).val())
                 {
                     let value = $('#realisation').val()/{{ $offre->objectifs }} * 100;
-                    $('#realisation_rate').val(value.toFixed(2));
+                    $('#realisation_rate').val(value.toFixed(0));
                     $('#rest_per_objectifs').val({{ $offre->objectifs }} - $('#realisation').val());
                 }else
                 {

@@ -90,7 +90,9 @@ class RealisationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $offre = offres::where('id',$id)->first();
+        $realisation = DataOffres::where('offres_id',$id)->first();
+        return view('admin.deptech.offres.realisation.edit',compact('offre','realisation'));
     }
 
     /**

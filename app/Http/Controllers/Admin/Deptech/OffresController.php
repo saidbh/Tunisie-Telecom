@@ -51,28 +51,29 @@ class OffresController extends Controller
             'objectif_date'=>'bail|required',
             'objectifs'=>'bail|required',
         ]);
-
         if ($validator->fails()) {
             Session::flash('error', $validator->errors()->first());
             return redirect()->back()->withInput();
         }
         try {
-            $offre = new offres();
-            $offre->offre_type_id = $request->offre_type;
-            $offre->objectif_types_id = $request->objectif_type;
-            $offre->departements_id = 1;
-            $offre->documents_id = null;
-            $offre->objectif_date = $request->objectif_date;
-            $offre->objectifs = $request->objectifs;
-            $offre->save();
-/*             $data = new DataOffres();
-            $data->offres_id = $offre->id;
-            $data->objectifs = $request->objectifs;
-            $data->realisation = $request->realisation;
-            $data->realisation_rate = $request->realisation_rate;
-            $data->rest_per_objectifs = $request->rest_per_objectifs;
-            $data->save(); */
-
+            if(
+            !offres::where('offre_type_id',$request->offre_type)
+            ->where('objectif_types_id',$request->objectif_type)
+            ->where('objectif_date',$request->objectif_date)
+            ->get()
+            )
+            {
+                $offre = new offres();
+                $offre->offre_type_id = $request->offre_type;
+                $offre->objectif_types_id = $request->objectif_type;
+                $offre->departements_id = 1;
+                $offre->documents_id = null;
+                $offre->objectif_date = $request->objectif_date;
+                $offre->objectifs = $request->objectifs;
+                $offre->save();
+            }
+            Session::flash('error', 'Offre existe deja !');
+            return redirect()->route('technical-offres-list');
         } catch (QueryException $e) {
             Session::flash('error', $e->getMessage());
             return redirect()->back()->withInput();
@@ -118,14 +119,9 @@ class OffresController extends Controller
         $validator = Validator::make($request->all(), [
             'offre_type'=> 'bail|required',
             'objectif_type'=> 'bail|required',
-            'start_date'=>'bail|required',
-            'end_date'=>'bail|required',
+            'objectif_date'=>'bail|required',
             'objectifs'=>'bail|required',
-            'realisation'=>'bail|required',
-            'realisation_rate'=>'bail|required',
-            'rest_per_objectifs'=>'bail|required',
         ]);
-
         if ($validator->fails()) {
             Session::flash('error', $validator->errors()->first());
             return redirect()->back()->withInput();
@@ -134,10 +130,9 @@ class OffresController extends Controller
             offres::where('id',$id)->update([
                 'offre_type_id' => $request->offre_type,
                 'objectif_types_id' => $request->objectif_type,
-                'date_from' => $request->start_date,
-                'date_to' => $request->end_date,
+                'objectif_date' => $request->objectif_date,
+                'objectifs' => $request->objectifs,
             ]);
-
         } catch (QueryException $e) {
             Session::flash('error', $e->getMessage());
             return redirect()->back()->withInput();

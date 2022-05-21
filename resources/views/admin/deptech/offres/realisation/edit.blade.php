@@ -17,7 +17,7 @@
                             <div class="iq-header-title w-100">
                                 <div class="row">
                                     <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
-                                        <h4 class="card-title m-0">Edit offre</h4>
+                                        <h4 class="card-title m-0">Edit Realisation</h4>
                                         <div class="d-flex flex-row">
                                             {{--                                            <a href="#" class="btn mx-1 btn-success">PDF</a>--}}
                                             {{--                                            <a href="#" class="btn btn-success">Excel</a>--}}
@@ -26,44 +26,34 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="{{ route('technical-offres-list.update',$OneOffre->id) }}" method="post" enctype="multipart/form-data" class="was-validated">
+                        <form action="{{ route('realisation-offres-list.update',$realisation->id) }}" method="post" enctype="multipart/form-data" class="was-validated">
                             @csrf
                             @method('put')
                         <div class="iq-card-body">
                             <div class="container-fluid">
                                 <div class="row">
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="realisation_date">Date </label>
+                                        <input type="datetime-local" class="form-control" id="realisation_date" name="realisation_date" value="{{ date("Y-m-d H:i",strtotime($realisation->realisation_date)) }}" required>
+                                    </div>
+                                </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="offre-type">Liste des offres</label>
-                                            <select class="form-control" id="offre-type" name="offre_type" required>
-                                                <option></option>
-                                                @foreach($offres as $offre)
-                                                    <option value="{{ $offre->id }}" @if($OneOffre->OffreType->id == $offre->id) selected @endif>{{ $offre->name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <label for="realisation">Realisation</label>
+                                            <input type="text" class="form-control" id="realisation" name="realisation" value="{{ $realisation->realisation }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="objectif_type">Type objectifs</label>
-                                            <select class="form-control" id="objectif_type" name="objectif_type" required>
-                                                <option></option>
-                                                @foreach($objectiftypes as $objectiftype)
-                                                    <option value="{{ $objectiftype->id }}" @if($OneOffre->ObjectifType->id == $objectiftype->id) selected @endif>{{ $objectiftype->name }}</option>
-                                                @endforeach
-                                            </select>
+                                            <label for="realisation_rate{{ $realisation->id }}">Taux de realisation</label>
+                                            <input type="text" class="form-control" id="realisation_rate" name="realisation_rate" value="{{ $realisation->realisation_rate }}" readonly required>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="objectif_date">Date </label>
-                                            <input type="month" class="form-control" id="objectif_date" name="objectif_date" value="{{ $OneOffre->objectif_date }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="objectifs">Objectifs</label>
-                                            <input type="text" class="form-control" id="objectifs" name="objectifs" value="{{ $OneOffre->objectifs }}" required>
+                                            <label for="rest_per_objectifs{{ $realisation->id }}">Reste par objectifs</label>
+                                            <input type="text" class="form-control" id="rest_per_objectifs" name="rest_per_objectifs" value="{{ $realisation->rest_per_objectifs }}" readonly required>
                                         </div>
                                     </div>
                                 </div>
@@ -107,15 +97,6 @@
 
     <script>
         $(document).ready(function() {
-            $('#offre-table').DataTable({
-                "columnDefs": [{
-                    "targets": 9,
-                    "orderable": false
-                }],
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/fr_fr.json'
-                }
-            });
             $('#offre-type').selectpicker({
                 liveSearch:false,
                 noneResultsText:'Aucun résultat correspondant'
@@ -125,5 +106,16 @@
                 noneResultsText:'Aucun résultat correspondant'
             });
         });
+        $('#realisation').on('keyup', function(){
+                if($(this).val())
+                {
+                    let value = $('#realisation').val()/{{ $offre->objectifs }} * 100;
+                    $('#realisation_rate').val(value.toFixed(0));
+                    $('#rest_per_objectifs').val({{ $offre->objectifs }} - $('#realisation').val());
+                }else
+                {
+                    $('#rest_per_objectifs').val(0);
+                }
+            });
     </script>
 @endsection

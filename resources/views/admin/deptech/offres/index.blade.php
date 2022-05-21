@@ -141,9 +141,9 @@
                                                   <span data-toggle="modal" data-target="#editoffres">
                                                     <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{ route('technical-offres-list.edit',$offres->id) }}"><i class="ri-pencil-line"></i></a>
                                                   </span>
-                                                  <span data-toggle="modal" data-target="#deleteoffres{{$offres->id}}">
+                                                  {{-- <span data-toggle="modal" data-target="#deleteoffres{{$offres->id}}">
                                                     <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
-                                                  </span>
+                                                  </span> --}}
                                                 <div class="modal fade" id="deleteoffres{{$offres->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
