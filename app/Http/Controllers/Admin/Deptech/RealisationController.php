@@ -128,7 +128,7 @@ class RealisationController extends Controller
             return redirect()->back()->withInput();
         }
         Session::flash('success', 'Realisation mis a jour avec succés');
-        return redirect()->back()->withInput();
+        return redirect()->route('realisation-offres-list.show',$id);
     }
 
     /**
