@@ -52,13 +52,13 @@
                                                                     <div class="col-md-3">
                                                                         <div class="form-group">
                                                                             <label for="realisation_rate">Taux de realisation</label>
-                                                                            <input type="text" class="form-control" id="realisation_rate" name="realisation_rate" required>
+                                                                            <input type="text" class="form-control" id="realisation_rate" name="realisation_rate" readonly required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <div class="form-group">
                                                                             <label for="rest_per_objectifs">Reste par objectifs</label>
-                                                                            <input type="text" class="form-control" id="rest_per_objectifs" name="rest_per_objectifs" required>
+                                                                            <input type="text" class="form-control" id="rest_per_objectifs" name="rest_per_objectifs" readonly required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -127,19 +127,19 @@
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label for="realisation">Realisation</label>
-                                                                                <input type="text" class="form-control" id="realisation" name="realisation" value="{{ $realisation->realisation }}" required>
+                                                                                <input type="text" class="form-control" id="realisation1" name="realisation" value="{{ $realisation->realisation }}" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label for="realisation_rate">Taux de realisation</label>
-                                                                                <input type="text" class="form-control" id="realisation_rate" name="realisation_rate" value="{{ $realisation->realisation_rate }}" required>
+                                                                                <input type="text" class="form-control" id="realisation_rate1" name="realisation_rate" value="{{ $realisation->realisation_rate }}" required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label for="rest_per_objectifs">Reste par objectifs</label>
-                                                                                <input type="text" class="form-control" id="rest_per_objectifs" name="rest_per_objectifs" value="{{ $realisation->rest_per_objectifs }}" required>
+                                                                                <input type="text" class="form-control" id="rest_per_objectifs1" name="rest_per_objectifs" value="{{ $realisation->rest_per_objectifs }}" required>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -232,6 +232,17 @@
             $('#objectif-type').selectpicker({
                 liveSearch:false,
                 noneResultsText:'Aucun résultat correspondant'
+            });
+            $('#realisation').on('keyup', function(){
+                if($(this).val())
+                {
+                    let value = $('#realisation').val()/{{ $offre->objectifs }} * 100;
+                    $('#realisation_rate').val(value.toFixed(2));
+                    $('#rest_per_objectifs').val({{ $offre->objectifs }} - $('#realisation').val());
+                }else
+                {
+                    $('#rest_per_objectifs').val(0);
+                }
             });
         });
     </script>
