@@ -69,11 +69,13 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
 
     Route::group(['prefix'=>'Overview','name'=>'overview'],function(){
 
+        Route::post('/statics/offres', [Deptech\OverviewController::class, 'getStaticsObjectifs'])->name('stat-offres');
         Route::resource('deptech-Overview', Deptech\OverviewController::class)->names([
             'index' => 'technical-global-view',
             'create' => 'technical-global-view.create',
             'store' => 'technical-global-view.store',
             'edit' => 'technical-global-view.edit',
+            'show' => 'technical-global-view.show',
             'update' => 'technical-global-view.update',
             'destroy' => 'technical-global-view.destroy'
         ]);

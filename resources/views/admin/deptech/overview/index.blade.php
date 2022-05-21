@@ -17,73 +17,37 @@
                             <div class="iq-header-title w-100">
                                 <div class="row">
                                     <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
-                                        <h4 class="card-title m-0">Liste des fichies</h4>
+                                        <h4 class="card-title m-0">Statistiques</h4>
                                         <div class="d-flex flex-row">
-                                            <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#uploadfiles">Upload</a>
-                                            <div class="modal fade" id="uploadfiles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-{{--                                                            <h5 class="modal-title" id="exampleModalLabel">Upload fichiers</h5>--}}
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <form action="" method="post" enctype="multipart/form-data">
-                                                            @csrf
-                                                            @method('put')
-                                                        <div class="modal-body">
-                                                            <div class="container">
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <input type="file" class="form-control" id="excel_file" required>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                                            <button type="button" class="btn btn-success">Upload</button>
-                                                        </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#uploadfiles">Excel</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="iq-card-body">
-{{--                            <div class="table-responsive table-sm">--}}
-{{--                                <table id="teacher-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">--}}
-{{--                                    <thead>--}}
-{{--                                    <tr class="text-center">--}}
-{{--                                        <th>ID</th>--}}
-{{--                                        <th>Nom de fichier</th>--}}
-{{--                                        <th>Date upload</th>--}}
-{{--                                        <th>taille</th>--}}
-{{--                                        <th>Type</th>--}}
-{{--                                        <th>Action</th>--}}
-{{--                                    </tr>--}}
-{{--                                    </thead>--}}
-{{--                                    <tbody>--}}
-{{--                                    <tr class="text-center">--}}
-{{--                                        <td>1</td>--}}
-{{--                                        <td>--</td>--}}
-{{--                                        <td>--</td>--}}
-{{--                                        <td>--</td>--}}
-{{--                                        <td>--</td>--}}
-{{--                                        <td>--}}
-{{--                                            <div class="flex align-items-center list-user-action">--}}
-{{--                                                <a data-toggle="tooltip" data-placement="top" title="Détail" href=""><i class="ri-eye-line"></i></a>--}}
-{{--                                                <a data-toggle="tooltip" data-placement="top" title="statistique" href=""><i class="ri-bar-chart-grouped-line"></i></a>--}}
-{{--                                            </div>--}}
-{{--                                        </td>--}}
-{{--                                    </tr>--}}
-{{--                                    </tbody>--}}
-{{--                                </table>--}}
-{{--                            </div>--}}
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="objectifs">Liste des objectifs</label>
+                                            <select class="form-control" id="objectifs">
+                                              <option></option>
+                                              @foreach($offre as $off)
+                                              <option value="{{ $off->id }}" data-subtext="">{{ $off->OffreType->name }} {{ $off->ObjectifType->name }} {{ $off->objectifs }} DNT</option>
+                                              @endforeach
+                                            </select>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-12">
+                                        <div id="chart"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,16 +71,95 @@
             padding: 0 10px;
         }
     </style>
+      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         $(document).ready(function() {
-            $('#teacher-table').DataTable({
-                "columnDefs": [{
-                    "targets": 11,
-                    "orderable": false
-                }],
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/fr_fr.json'
-                }
+        $('#objectifs').selectpicker({
+                liveSearch:true,
+                noneResultsText:'Aucun résultat correspondant'
+            }).on('change', function(){
+          $.ajax({
+          "headers": {
+          'X-CSRF-TOKEN': '{{csrf_token()}}',
+          'Authorization' : 'Bearer {{Auth::user()->api_token}}',
+        },
+        "url": "{{route('stat-offres')}}",
+        "type": "post",
+        "responseType": 'json',
+        "data":{
+          offre:$(this).val(),
+        },
+        success: function (data) {
+          var realisation = [];
+          var realisation_rate = [];
+          var rest = [];
+          var dates = [];
+          $.each(data.data, function(key, value){
+            realisation.push(data.data[key].realisation);
+          });
+          $.each(data.data, function(key, value){
+            realisation_rate.push(data.data[key].realisation_rate);
+          });
+          $.each(data.data, function(key, value){
+            rest.push(data.data[key].rest_per_objectifs);
+          });
+          $.each(data.data, function(key, value){
+            dates.push(data.data[key].realisation_date);
+          });      
+        var options = {
+          series: [{
+          name: 'Realisation',
+          data: realisation,
+        }, {
+          name: 'Taux de realisation',
+          data: realisation_rate,
+        }, {
+          name: 'Reste par objectif',
+          data: rest,
+        }],
+          chart: {
+          type: 'bar',
+          height: 350,
+          stacked: true,
+          toolbar: {
+            show: true
+          },
+          zoom: {
+            enabled: false
+          }
+        },
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            legend: {
+              position: 'bottom',
+              offsetX: -10,
+              offsetY: 0
+            }
+          }
+        }],
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            borderRadius: 10
+          },
+        },
+        xaxis: {
+          type: 'text',
+          categories: dates,
+        },
+        legend: {
+          position: 'right',
+          offsetY: 40
+        },
+        fill: {
+          opacity: 1
+        }
+        };
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+        }
+      })
             });
         });
     </script>

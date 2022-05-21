@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Deptech;
 
 use Illuminate\Routing\Controller;
+use App\Models\offres;
+use App\Models\DataOffres;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -16,7 +18,8 @@ class OverviewController extends Controller
      */
     public function index()
     {
-        return view('admin.deptech.overview.index');
+        $offre = offres::where('departements_id',1)->get();
+        return view('admin.deptech.overview.index', compact('offre'));
     }
 
     /**
@@ -48,7 +51,7 @@ class OverviewController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -83,5 +86,22 @@ class OverviewController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * get data with ajax request.
+     *
+     * Ajax request
+     * @return JSON response
+     */
+    public function getStaticsObjectifs(Request $request)
+    {
+        try {
+            $request->ajax();
+            $data = DataOffres::where('offres_id',$request->offre)->get();
+            return response()->json(['data' => $data], 200); 
+        } catch (QueryException $e) {
+            return response()->json(['error' => $e], 500);
+        }
     }
 }

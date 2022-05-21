@@ -120,12 +120,8 @@
                                         <th>ID</th>
                                         <th>Offre</th>
                                         <th>Date</th>
-{{--                                         <th>Date de fin</th> --}}
                                         <th>type d'objectif</th>
                                         <th>Objectif</th>
-{{--                                         <th>Realisation</th>
-                                        <th>Taux de realisation</th>
-                                        <th>Reste par objectif</th> --}}
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -135,12 +131,8 @@
                                         <td>{{ $offres->id }}</td>
                                         <td>{{ $offres->OffreType->name }}</td>
                                         <td>{{ $offres->objectif_date }}</td>
-                                        {{-- <td>{{ date('Y-m-d', strtotime($offres->date_to)) }}</td> --}}
                                         <td>{{ $offres->ObjectifType->name }}</td>
                                         <td>{{ $offres->objectifs }}</td>
-                                   {{--      <td>{{ $offres->DataOffre->realisation }}</td>
-                                        <td>{{ $offres->DataOffre->realisation_rate }}</td>
-                                        <td>{{ $offres->DataOffre->rest_per_objectifs }}</td> --}}
                                         <td>
                                             <div class="flex align-items-center list-user-action">
                                                 <span data-toggle="modal" data-target="#">
