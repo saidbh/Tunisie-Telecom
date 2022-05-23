@@ -27,16 +27,7 @@ class PermissionsSeeder extends Seeder
             array('id' => '8','roles_id' => '1','sub_categories_id' => '8','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
             array('id' => '9','roles_id' => '1','sub_categories_id' => '9','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
             array('id' => '10','roles_id' => '1','sub_categories_id' => '10','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-            array('id' => '11','roles_id' => '1','sub_categories_id' => '11','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-            array('id' => '12','roles_id' => '1','sub_categories_id' => '12','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-            array('id' => '13','roles_id' => '1','sub_categories_id' => '13','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-            array('id' => '14','roles_id' => '1','sub_categories_id' => '14','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-            array('id' => '15','roles_id' => '1','sub_categories_id' => '15','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-            array('id' => '16','roles_id' => '1','sub_categories_id' => '16','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-            array('id' => '17','roles_id' => '1','sub_categories_id' => '17','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-            array('id' => '18','roles_id' => '1','sub_categories_id' => '18','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-            array('id' => '19','roles_id' => '1','sub_categories_id' => '19','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-            array('id' => '20','roles_id' => '1','sub_categories_id' => '20','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
+
         );
 
         DB::table('permissions')->insert($permissions);
