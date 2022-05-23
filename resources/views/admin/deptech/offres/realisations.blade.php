@@ -234,7 +234,7 @@
             $('#realisation').on('keyup', function(){
                 if($(this).val())
                 {
-                    let value = $('#realisation').val()/{{ $offre->objectifs }} * 100;
+                    let value = $('#realisation').val() / {{ $offre->objectifs }} * 100;
                     $('#realisation_rate').val(value.toFixed(0));
                     $('#rest_per_objectifs').val({{ $offre->objectifs }} - $('#realisation').val());
                 }else
