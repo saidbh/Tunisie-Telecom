@@ -23,9 +23,11 @@
                             </div>
                             <div class="iq-card-body">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <a class="nav-link dictionary-link active" id="v-pills-currencies-tab" data-toggle="pill" href="#v-pills-currencies" role="tab" aria-controls="v-pills-currencies" aria-selected="true">Objectifs</a>
+                                    <a class="nav-link dictionary-link active" id="v-pills-currencies-tab" data-toggle="pill" href="#v-pills-currencies" role="tab" aria-controls="v-pills-currencies" aria-selected="true">Types Objectifs</a>
 {{--                                    <div class="border-top my-1"></div>--}}
-                                    <a class="nav-link dictionary-link" id="v-pills-thirdsCategories-tab" data-toggle="pill" href="#v-pills-thirdsCategories" role="tab" aria-controls="v-pills-thirdsCategories" aria-selected="false">Offres</a>
+                                    <a class="nav-link dictionary-link" id="v-pills-thirdsCategories-tab" data-toggle="pill" href="#v-pills-thirdsCategories" role="tab" aria-controls="v-pills-thirdsCategories" aria-selected="false">Offres techniques</a>
+                                    <a class="nav-link dictionary-link" id="v-pills-offresCom-tab" data-toggle="pill" href="#v-pills-offresCom" role="tab" aria-controls="v-pills-thirdsCategories" aria-selected="false">Offres Commerciale</a>
+                                    <div class="border-top my-1"></div>
                                     <a class="nav-link dictionary-link" id="v-pills-departements-tab" data-toggle="pill" href="#v-pills-departements" role="tab" aria-controls="v-pills-departements" aria-selected="false">Départements</a>
                                 </div>
                             </div>
@@ -39,6 +41,9 @@
                             <div class="tab-pane fade" id="v-pills-thirdsCategories" role="tabpanel" aria-labelledby="v-pills-thirdsCategories-tab">
                                 @include('admin.system.dictionary.offres_tech.index')
                             </div>
+                            <div class="tab-pane fade" id="v-pills-offresCom" role="tabpanel" aria-labelledby="v-pills-offresCom-tab">
+                                @include('admin.system.dictionary.offres_com.index')
+                            </div>
                             <div class="tab-pane fade" id="v-pills-departements" role="tabpanel" aria-labelledby="v-pills-departements-tab">
                                 @include('admin.system.dictionary.departement.index')
                             </div>
@@ -48,12 +53,10 @@
             </div>
         </div>
     </div>
-
     <script>
         $(document).ready(function() {
 
         });
 
     </script>
-
 @endsection

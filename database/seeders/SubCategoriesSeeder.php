@@ -28,7 +28,7 @@ class SubCategoriesSeeder extends Seeder
 
             array('id' => '8','categories_id' => '6','title' => 'Rôles et permissions','link' => 'system-role-permission','icon' => NULL,'created_at' => NULL,'updated_at' => NULL),
             array('id' => '9','categories_id' => '6','title' => 'Attribution Rôle','link' => 'system-assign-role','icon' => NULL,'created_at' => NULL,'updated_at' => NULL),
-            array('id' => '10','categories_id' => '6','title' => 'Dictionnaire','link' => 'system-dictionary','icon' => NULL,'created_at' => NULL,'updated_at' => NULL)
+            array('id' => '10','categories_id' => '6','title' => 'Parametres','link' => 'system-dictionary','icon' => NULL,'created_at' => NULL,'updated_at' => NULL)
         );
 
         DB::table('sub_categories')->insert($sub_categories);

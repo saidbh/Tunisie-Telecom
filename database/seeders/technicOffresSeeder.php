@@ -21,6 +21,6 @@ class technicOffresSeeder extends Seeder
             array('id' => '3','name' => 'FO internet','description' => NULL,'created_at' => '2022-05-13 00:58:50','updated_at' => '2022-05-13 00:58:50'),
             array('id' => '4','name' => 'Taux de penetration','description' => NULL,'created_at' => '2022-05-13 00:58:50','updated_at' => '2022-05-13 00:58:50')
         );
-        DB::table('offre_type')->insert($offre_type);
+        DB::table('offre_technical')->insert($offre_type);
     }
 }

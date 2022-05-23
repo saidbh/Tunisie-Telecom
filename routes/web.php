@@ -164,7 +164,7 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
             'destroy' => 'commercial-offres-list.destroy'
         ]);
 
-//        Route::resource('realisation-offres', Admin\Deptech\RealisationController::class)->names([
+//        Route::resource('realisation-offres', Admin\depcom\RealisationController::class)->names([
 //            'index' => 'realisation-offres-list',
 //            'create' => 'realisation-offres-list.create',
 //            'store' => 'realisation-offres-list.store',

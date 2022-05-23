@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OffreType extends Model
+class OffreCommercial extends Model
 {
+    use HasFactory;
+
     use HasFactory;
 
     /**
@@ -14,7 +16,7 @@ class OffreType extends Model
      *
      * @var string
      */
-    protected $table = 'offre_technical';
+    protected $table = 'offre_commercial';
 
     /**
      * Indicates if the model should be timestamped.
