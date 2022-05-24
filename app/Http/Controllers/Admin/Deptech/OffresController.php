@@ -23,7 +23,7 @@ class OffresController extends Controller
     {
         $offres = OffreType::all();
         $objectiftypes = ObjectifTypes::all();
-        $offrelist = offres::all();
+        $offrelist = offres::where('offre_type_id', !null)->where('departements_id',1)->get();
         return view('admin.deptech.offres.index',compact('offres','objectiftypes','offrelist'));
     }
 

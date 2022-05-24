@@ -17,56 +17,57 @@
                             <div class="iq-header-title w-100">
                                 <div class="row">
                                     <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
-                                        <h4 class="card-title m-0">Liste des realisations pour {{ $offre->OffreType->name  }} objectif ( {{ $offre->ObjectifType->name }} )</h4>
+                                        <h4 class="card-title m-0">Liste des realisations pour {{ $offre->CommercialOffre->name  }} objectif ( {{ $offre->ObjectifType->name }} )</h4>
                                         <div class="d-flex flex-row">
                                             {{--                                            <a href="#" class="btn mx-1 btn-success">PDF</a>--}}
                                             {{--                                            <a href="#" class="btn btn-success">Excel</a>--}}
-                                            <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#offres-managment">Ajouter</a>
+                                            <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#offres-managment">Upload fichies</a>
                                             <div class="modal fade" id="offres-managment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-xl" role="document">
+                                                <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLongTitle">Gestion des offres</h5>
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Ajouter Realisations</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form action="{{ route('realisation-offres-list.store') }}" method="post" enctype="multipart/form-data" class="was-validated">
+                                                        <form action="{{ route('realisation-commercial.store') }}" method="post" enctype="multipart/form-data" class="was-validated">
                                                             @csrf
                                                             <div class="modal-body">
                                                                 <div class="container-fluid">
                                                                     <input type="hidden" class="form-control" id="offres_id" name="offres_id" value="{{ $offre->id  }}" required>
+                                                                    <input type="hidden" class="form-control" id="objectifs" name="objectifs" value="{{ $offre->objectifs  }}" required>
                                                                     <div class="row">
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
-                                                                                <label for="realisation_date">Date</label>
-                                                                                <input type="datetime-local" class="form-control" id="realisation_date" name="realisation_date" required>
+                                                                                <label for="realisation">Date</label>
+                                                                                <input type="datetime-local" class="form-control" id="date" name="date" required>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
+                                                                        <div class="col-md-9">
                                                                             <div class="form-group">
-                                                                                <label for="realisation">Realisation</label>
-                                                                                <input type="text" class="form-control" id="realisation" name="realisation" required>
+                                                                                <label for="realisation_date">Upload fichiers</label>
+                                                                                <input type="file" class="form-control" id="files" name="files" required>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label for="realisation_rate">Taux de realisation</label>
-                                                                                <input type="text" class="form-control" id="realisation_rate" name="realisation_rate" readonly required>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label for="rest_per_objectifs">Reste par objectifs</label>
-                                                                                <input type="text" class="form-control" id="rest_per_objectifs" name="rest_per_objectifs" readonly required>
-                                                                            </div>
-                                                                        </div>
+{{--                                                                        <div class="col-md-3">--}}
+{{--                                                                            <div class="form-group">--}}
+{{--                                                                                <label for="realisation_rate">Taux de realisation</label>--}}
+{{--                                                                                <input type="text" class="form-control" id="realisation_rate" name="realisation_rate" readonly required>--}}
+{{--                                                                            </div>--}}
+{{--                                                                        </div>--}}
+{{--                                                                        <div class="col-md-3">--}}
+{{--                                                                            <div class="form-group">--}}
+{{--                                                                                <label for="rest_per_objectifs">Reste par objectifs</label>--}}
+{{--                                                                                <input type="text" class="form-control" id="rest_per_objectifs" name="rest_per_objectifs" readonly required>--}}
+{{--                                                                            </div>--}}
+{{--                                                                        </div>--}}
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                                                <button type="submit" class="btn btn-success">Ajouter</button>
+                                                                <button type="submit" class="btn btn-success">Upload</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -100,9 +101,9 @@
                                             <td>{{ $realisation->rest_per_objectifs }}</td>
                                             <td>
                                                 <div class="flex align-items-center list-user-action">
-                                                  <span data-toggle="modal" data-target="#editoffres{{ $realisation->id }}">
-                                                    <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{ route('realisation-offres-list.edit',$realisation->id) }}"><i class="ri-pencil-line"></i></a>
-                                                  </span>
+{{--                                                  <span data-toggle="modal" data-target="#editoffres{{ $realisation->id }}">--}}
+{{--                                                    <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{ route('realisation-offres-list.edit',$realisation->id) }}"><i class="ri-pencil-line"></i></a>--}}
+{{--                                                  </span>--}}
                                                     <div class="modal fade" id="#" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-xl" role="document">
                                                             <div class="modal-content">

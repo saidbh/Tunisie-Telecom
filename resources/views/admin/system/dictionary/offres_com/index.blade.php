@@ -5,8 +5,8 @@
                 <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
                     <h4 class="card-title m-0">Offres Commerciale</h4>
                     <div class="d-flex flex-row">
-                        <a data-toggle="modal" href="#" data-target="#addoffres" class="btn btn-success"><i class="ri-add-line"></i>Ajouter</a>
-                        <div class="modal fade" id="addoffres" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <a data-toggle="modal" href="#" data-target="#addoffresCom" class="btn btn-success"><i class="ri-add-line"></i>Ajouter</a>
+                        <div class="modal fade" id="addoffresCom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -17,7 +17,7 @@
                                     </div>
                                     <form action="{{ route('system-dictionary.store') }}" method="post" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" class="form-control" id="action" name="action" value="offres">
+                                        <input type="hidden" class="form-control" id="action" name="action" value="offrescom">
                                         <div class="modal-body">
                                             <div class="container">
                                                 <div class="row">
@@ -51,7 +51,7 @@
     </div>
     <div class="iq-card-body">
         <div class="table-responsive table-sm">
-            <table id="cities-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
+            <table id="offresCom-table" class="table table-striped table-bordered mt-4" role="grid" aria-describedby="user-list-page-info">
                 <thead>
                 <tr class="text-center">
                     <th>ID</th>
@@ -68,10 +68,10 @@
                         <td>{{ $offreC->description }}</td>
                         <td>
                             <div class="flex align-items-center list-user-action">
-                              <span data-toggle="modal" data-target="#editoffres{{$offreC->id}}">
+                              <span data-toggle="modal" data-target="#editoffresCom{{$offreC->id}}">
                                 <a data-toggle="tooltip" data-placement="top" title="Modifier" href="#"><i class="ri-pencil-line"></i></a>
                               </span>
-                                <div class="modal fade" id="editoffres{{$offreC->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="editoffresCom{{$offreC->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -83,7 +83,7 @@
                                             <form action="{{ route('system-dictionary.update',$offreC->id) }}" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('put')
-                                                <input type="hidden" class="form-control" id="action" name="action" value="offres">
+                                                <input type="hidden" class="form-control" id="action" name="action" value="offrescom">
                                                 <div class="modal-body">
                                                     <div class="container">
                                                         <div class="row">
@@ -110,10 +110,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <span data-toggle="modal" data-target="#deleteoffres{{$offreC->id}}">
+                                <span data-toggle="modal" data-target="#deleteoffresCom{{$offreC->id}}">
                                 <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
                               </span>
-                                <div class="modal fade" id="deleteoffres{{$offreC->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="deleteoffresCom{{$offreC->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -125,7 +125,7 @@
                                             <form action="{{ route('system-dictionary.destroy',$offreC->id) }}" method="post" >
                                                 @csrf
                                                 @method('delete')
-                                                <input type="hidden" class="form-control" id="action" name="action" value="offres">
+                                                <input type="hidden" class="form-control" id="action" name="action" value="offrescom">
                                                 <div class="modal-body">
                                                     Voulez vous vraiment supprimer cet Offre ?
                                                 </div>
@@ -160,7 +160,7 @@
     $(document).ready(function() {
         $('#offresCom-table').DataTable({
             "columnDefs": [{
-                "targets": [0, 4]
+                "targets": [0, 3]
                 , "orderable": false
             }]
             , 'language': {

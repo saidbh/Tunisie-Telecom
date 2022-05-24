@@ -17,7 +17,7 @@
                             <div class="iq-header-title w-100">
                                 <div class="row">
                                     <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
-                                        <h4 class="card-title m-0">Edit offre</h4>
+                                        <h4 class="card-title m-0">Edit Offres Commerciales</h4>
                                         <div class="d-flex flex-row">
                                             {{--                                            <a href="#" class="btn mx-1 btn-success">PDF</a>--}}
                                             {{--                                            <a href="#" class="btn btn-success">Excel</a>--}}
@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="{{ route('technical-offres-list.update',$OneOffre->id) }}" method="post" enctype="multipart/form-data" class="was-validated">
+                        <form action="{{ route('commercial-offres-list.update',$OneOffre->id) }}" method="post" enctype="multipart/form-data" class="was-validated">
                             @csrf
                             @method('put')
                             <div class="iq-card-body">
@@ -38,7 +38,7 @@
                                                 <select class="form-control" id="offre-type" name="offre_type" required>
                                                     <option></option>
                                                     @foreach($offres as $offre)
-                                                        <option value="{{ $offre->id }}" @if($OneOffre->OffreType->id == $offre->id) selected @endif>{{ $offre->name }}</option>
+                                                        <option value="{{ $offre->id }}" @if($OneOffre->CommercialOffre->id == $offre->id) selected @endif>{{ $offre->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

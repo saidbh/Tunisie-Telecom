@@ -17,7 +17,7 @@
                             <div class="iq-header-title w-100">
                                 <div class="row">
                                     <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
-                                        <h4 class="card-title m-0">Liste des offres</h4>
+                                        <h4 class="card-title m-0">Liste des offres Commerciales</h4>
                                         <div class="d-flex flex-row">
                                             {{--                                            <a href="#" class="btn mx-1 btn-success">PDF</a>--}}
                                             {{--                                            <a href="#" class="btn btn-success">Excel</a>--}}
@@ -31,7 +31,7 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form action="{{ route('technical-offres-list.store') }}" method="post" enctype="multipart/form-data" class="was-validated">
+                                                        <form action="{{ route('commercial-offres-list.store') }}" method="post" enctype="multipart/form-data" class="was-validated">
                                                             @csrf
                                                             <div class="modal-body">
                                                                 <div class="container-fluid">
@@ -129,17 +129,17 @@
                                     @foreach($offrelist as $offres)
                                         <tr class="text-center">
                                             <td>{{ $offres->id }}</td>
-                                            <td>{{ $offres->OffreType->name }}</td>
+                                            <td>{{ $offres->CommercialOffre->name }}</td>
                                             <td>{{ $offres->objectif_date }}</td>
                                             <td>{{ $offres->ObjectifType->name }}</td>
                                             <td>{{ $offres->objectifs }}</td>
                                             <td>
                                                 <div class="flex align-items-center list-user-action">
                                                 <span data-toggle="modal" data-target="#">
-                                                    <a data-toggle="tooltip" data-placement="top" title="Ajouter realisation" href="{{ route('realisation-offres-list.show',$offres->id) }}"><i class="ri-bar-chart-grouped-line"></i></a>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Ajouter realisation" href="{{ route('realisation-commercial.show',$offres->id) }}"><i class="ri-bar-chart-grouped-line"></i></a>
                                                   </span>
                                                     <span data-toggle="modal" data-target="#editoffres">
-                                                    <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{ route('technical-offres-list.edit',$offres->id) }}"><i class="ri-pencil-line"></i></a>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{ route('commercial-offres-list.edit',$offres->id) }}"><i class="ri-pencil-line"></i></a>
                                                   </span>
                                                     {{-- <span data-toggle="modal" data-target="#deleteoffres{{$offres->id}}">
                                                       <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
@@ -153,7 +153,7 @@
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
-                                                                <form action="{{ route('technical-offres-list.destroy',$offres->id) }}" method="post">
+                                                                <form action="{{ route('commercial-offres-list.destroy',$offres->id) }}" method="post">
                                                                     @csrf
                                                                     @method('delete')
                                                                     <div class="modal-body">

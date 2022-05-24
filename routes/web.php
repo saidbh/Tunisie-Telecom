@@ -1,6 +1,8 @@
 <?php
 namespace  App\Http\Controllers;
 
+use App\Http\Controllers\Admin\depcom\OffresController;
+use App\Http\Controllers\Admin\depcom\RealisationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -164,15 +166,15 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
             'destroy' => 'commercial-offres-list.destroy'
         ]);
 
-//        Route::resource('realisation-offres', Admin\depcom\RealisationController::class)->names([
-//            'index' => 'realisation-offres-list',
-//            'create' => 'realisation-offres-list.create',
-//            'store' => 'realisation-offres-list.store',
-//            'show' => 'realisation-offres-list.show',
-//            'edit' => 'realisation-offres-list.edit',
-//            'update' => 'realisation-offres-list.update',
-//            'destroy' => 'realisation-offres-list.destroy'
-//        ]);
+        Route::resource('realisation-offres-commercial', Admin\depcom\RealisationController::class)->names([
+            'index' => 'realisation-commercial-list',
+            'create' => 'realisation-commercial.create',
+            'store' => 'realisation-commercial.store',
+            'show' => 'realisation-commercial.show',
+            'edit' => 'realisation-commercial.edit',
+            'update' => 'realisation-commercial.update',
+            'destroy' => 'realisation-commercial.destroy'
+        ]);
     });
 
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\depcom;
 
+use App\Models\offres;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class OverviewController extends Controller
      */
     public function index()
     {
-        //
+        $offre = offres::where('departements_id',2)->get();
+        return view('admin.depcom.overview.index', compact('offre'));
     }
 
     /**

@@ -32,12 +32,12 @@
                                         <div class="form-group">
                                             <label for="objectifs">Liste des objectifs</label>
                                             <select class="form-control" id="objectifs">
-                                              <option></option>
-                                              @foreach($offre as $off)
-                                              <option value="{{ $off->id }}" data-subtext="">{{ $off->OffreType->name }} {{ $off->ObjectifType->name }} {{ $off->objectifs }} </option>
-                                              @endforeach
+                                                <option></option>
+                                                @foreach($offre as $off)
+                                                    <option value="{{ $off->id }}" data-subtext="">{{ $off->OffreType->name }} {{ $off->ObjectifType->name }} {{ $off->objectifs }} </option>
+                                                @endforeach
                                             </select>
-                                          </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -71,95 +71,95 @@
             padding: 0 10px;
         }
     </style>
-      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script>
         $(document).ready(function() {
-        $('#objectifs').selectpicker({
+            $('#objectifs').selectpicker({
                 liveSearch:true,
                 noneResultsText:'Aucun résultat correspondant'
             }).on('change', function(){
-          $.ajax({
-          "headers": {
-          'X-CSRF-TOKEN': '{{csrf_token()}}',
-          'Authorization' : 'Bearer {{Auth::user()->api_token}}',
-        },
-        "url": "{{route('stat-offres')}}",
-        "type": "post",
-        "responseType": 'json',
-        "data":{
-          offre:$(this).val(),
-        },
-        success: function (data) {
-          var realisation = [];
-          var realisation_rate = [];
-          var rest = [];
-          var dates = [];
-          $.each(data.data, function(key, value){
-            realisation.push(data.data[key].realisation);
-          });
-          $.each(data.data, function(key, value){
-            realisation_rate.push(data.data[key].realisation_rate);
-          });
-          $.each(data.data, function(key, value){
-            rest.push(data.data[key].rest_per_objectifs);
-          });
-          $.each(data.data, function(key, value){
-            dates.push(data.data[key].realisation_date);
-          });      
-        var options = {
-          series: [{
-          name: 'Realisation',
-          data: realisation,
-        }, {
-          name: 'Taux de realisation',
-          data: realisation_rate,
-        }, {
-          name: 'Reste par objectif',
-          data: rest,
-        }],
-          chart: {
-          type: 'bar',
-          height: 350,
-          stacked: true,
-          toolbar: {
-            show: true
-          },
-          zoom: {
-            enabled: true
-          }
-        },
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            legend: {
-              position: 'bottom',
-              offsetX: -10,
-              offsetY: 0
-            }
-          }
-        }],
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            borderRadius: 10
-          },
-        },
-        xaxis: {
-          type: 'text',
-          categories: dates,
-        },
-        legend: {
-          position: 'right',
-          offsetY: 40
-        },
-        fill: {
-          opacity: 1
-        }
-        };
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
-        }
-      })
+                $.ajax({
+                    "headers": {
+                        'X-CSRF-TOKEN': '{{csrf_token()}}',
+                        'Authorization' : 'Bearer {{Auth::user()->api_token}}',
+                    },
+                    "url": "{{route('stat-offres')}}",
+                    "type": "post",
+                    "responseType": 'json',
+                    "data":{
+                        offre:$(this).val(),
+                    },
+                    success: function (data) {
+                        var realisation = [];
+                        var realisation_rate = [];
+                        var rest = [];
+                        var dates = [];
+                        $.each(data.data, function(key, value){
+                            realisation.push(data.data[key].realisation);
+                        });
+                        $.each(data.data, function(key, value){
+                            realisation_rate.push(data.data[key].realisation_rate);
+                        });
+                        $.each(data.data, function(key, value){
+                            rest.push(data.data[key].rest_per_objectifs);
+                        });
+                        $.each(data.data, function(key, value){
+                            dates.push(data.data[key].realisation_date);
+                        });
+                        var options = {
+                            series: [{
+                                name: 'Realisation',
+                                data: realisation,
+                            }, {
+                                name: 'Taux de realisation',
+                                data: realisation_rate,
+                            }, {
+                                name: 'Reste par objectif',
+                                data: rest,
+                            }],
+                            chart: {
+                                type: 'bar',
+                                height: 350,
+                                stacked: true,
+                                toolbar: {
+                                    show: true
+                                },
+                                zoom: {
+                                    enabled: true
+                                }
+                            },
+                            responsive: [{
+                                breakpoint: 480,
+                                options: {
+                                    legend: {
+                                        position: 'bottom',
+                                        offsetX: -10,
+                                        offsetY: 0
+                                    }
+                                }
+                            }],
+                            plotOptions: {
+                                bar: {
+                                    horizontal: false,
+                                    borderRadius: 10
+                                },
+                            },
+                            xaxis: {
+                                type: 'text',
+                                categories: dates,
+                            },
+                            legend: {
+                                position: 'right',
+                                offsetY: 40
+                            },
+                            fill: {
+                                opacity: 1
+                            }
+                        };
+                        var chart = new ApexCharts(document.querySelector("#chart"), options);
+                        chart.render();
+                    }
+                })
             });
         });
     </script>

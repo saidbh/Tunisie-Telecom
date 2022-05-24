@@ -44,6 +44,7 @@ class offres extends Model
     protected $fillable = [
         'id',
         'offre_type_id',
+        'offre_commercial_id',
         'objectif_types_id',
         'departements_id',
         'documents_id',
@@ -63,5 +64,9 @@ class offres extends Model
     public function OffreType()
     {
         return $this->hasOne(OffreType::class,'id','offre_type_id');
+    }
+    public function CommercialOffre()
+    {
+        return $this->hasOne(OffreCommercial::class,'id','offre_commercial_id');
     }
 }
