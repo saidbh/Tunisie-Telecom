@@ -36,7 +36,9 @@
                                                             <div class="modal-body">
                                                                 <div class="container-fluid">
                                                                     <input type="hidden" class="form-control" id="offres_id" name="offres_id" value="{{ $offre->id  }}" required>
+                                                                    <input type="hidden" class="form-control" id="offresCom_id" name="offresCom_id" value="{{ $offre->CommercialOffre->id  }}" required>
                                                                     <input type="hidden" class="form-control" id="objectifs" name="objectifs" value="{{ $offre->objectifs  }}" required>
+                                                                    <input type="hidden" class="form-control" id="type" name="type" value="{{ $offre->ObjectifType->name  }}" required>
                                                                     <div class="row">
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">

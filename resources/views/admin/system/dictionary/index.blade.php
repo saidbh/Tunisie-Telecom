@@ -27,6 +27,7 @@
 {{--                                    <div class="border-top my-1"></div>--}}
                                     <a class="nav-link dictionary-link" id="v-pills-thirdsCategories-tab" data-toggle="pill" href="#v-pills-thirdsCategories" role="tab" aria-controls="v-pills-thirdsCategories" aria-selected="false">Offres techniques</a>
                                     <a class="nav-link dictionary-link" id="v-pills-offresCom-tab" data-toggle="pill" href="#v-pills-offresCom" role="tab" aria-controls="v-pills-thirdsCategories" aria-selected="false">Offres Commerciale</a>
+                                    <a class="nav-link dictionary-link" id="v-pills-suboffresCom-tab" data-toggle="pill" href="#v-pills-suboffresCom" role="tab" aria-controls="v-pills-suboffresCom" aria-selected="false">Sous Offres Commerciale</a>
                                     <div class="border-top my-1"></div>
                                     <a class="nav-link dictionary-link" id="v-pills-departements-tab" data-toggle="pill" href="#v-pills-departements" role="tab" aria-controls="v-pills-departements" aria-selected="false">Départements</a>
                                 </div>
@@ -44,6 +45,9 @@
                             <div class="tab-pane fade" id="v-pills-offresCom" role="tabpanel" aria-labelledby="v-pills-offresCom-tab">
                                 @include('admin.system.dictionary.offres_com.index')
                             </div>
+                            <div class="tab-pane fade" id="v-pills-suboffresCom" role="tabpanel" aria-labelledby="v-pills-offresCom-tab">
+                               @include('admin.system.dictionary.sub_offre_com.index')
+                            </div>
                             <div class="tab-pane fade" id="v-pills-departements" role="tabpanel" aria-labelledby="v-pills-departements-tab">
                                 @include('admin.system.dictionary.departement.index')
                             </div>
@@ -53,6 +57,28 @@
             </div>
         </div>
     </div>
+    <style rel="stylesheet">
+        .custom-select {
+            width: auto;
+            display: inline-block;
+            padding: 0 5px;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .dropdown-menu .inner ul li {
+            position: relative;
+            font-size: 14px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .bootstrap-select .dropdown-menu li.active small{
+            color: #6c757d !important;
+        }
+    </style>
     <script>
         $(document).ready(function() {
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\System;
 
 use App\Models\DataOffres;
+use App\Models\SubOffreCommercial;
 use App\Models\departements;
 use App\Models\ObjectifTypes;
 use App\Models\offres;
@@ -28,7 +29,8 @@ class DictionaryController extends Controller
         $offretype = OffreType::all();
         $departement = departements::all();
         $offreCom = OffreCommercial::all();
-        return view('admin.system.dictionary.index', compact('offres','depart','objectifs','offretype','departement','offreCom'));
+        $suboffreCom = SubOffreCommercial::all();
+        return view('admin.system.dictionary.index', compact('offres','depart','objectifs','offretype','departement','offreCom','suboffreCom'));
     }
 
     /**
@@ -86,6 +88,19 @@ class DictionaryController extends Controller
                     return redirect()->back()->withInput();
                 }
                 Session::flash('success', 'Offre ajouter avec succés');
+                return redirect()->route('system-dictionary');
+            case 'suboffrescom':
+                try {
+                    $suboffrecom = new SubOffreCommercial();
+                    $suboffrecom->offre_commercial_id = $request->Comoffres;
+                    $suboffrecom->name = $request->suboffres;
+                    $suboffrecom->description = $request->description;
+                    $suboffrecom->save();
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Sous Offre ajouter avec succés');
                 return redirect()->route('system-dictionary');
             case 'departement':
                 try {
@@ -171,6 +186,19 @@ class DictionaryController extends Controller
                 }
                 Session::flash('success', 'Offre modifier avec succés');
                 return redirect()->route('system-dictionary');
+            case 'suboffrescom':
+                try {
+                    SubOffreCommercial::where('id',$id)->update([
+                        'offre_commercial_id' => $request->Comoffres,
+                        'name' => $request->suboffres,
+                        'description' => $request->description,
+                    ]);
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Sous Offre modifier avec succés');
+                return redirect()->route('system-dictionary');
             case 'departement':
                 try {
                     departements::where('id',$id)->update([
@@ -217,6 +245,15 @@ class DictionaryController extends Controller
             case 'offrescom':
                 try {
                     OffreCommercial::where('id',$id)->delete();
+                } catch (QueryException $e) {
+                    Session::flash('error', $e->getMessage());
+                    return redirect()->back()->withInput();
+                }
+                Session::flash('success', 'Offre supprimer avec succés');
+                return redirect()->route('system-dictionary');
+            case 'suboffrescom':
+                try {
+                    SubOffreCommercial::where('id',$id)->delete();
                 } catch (QueryException $e) {
                     Session::flash('error', $e->getMessage());
                     return redirect()->back()->withInput();

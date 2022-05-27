@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OffreCommercial extends Model
+class SubOffreCommercial extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class OffreCommercial extends Model
      *
      * @var string
      */
-    protected $table = 'offre_commercial';
+    protected $table = 'sub_commercial_offre';
 
     /**
      * Indicates if the model should be timestamped.
@@ -43,9 +43,15 @@ class OffreCommercial extends Model
      */
     protected $fillable = [
         'id',
+        'offre_commercial_id',
         'name',
         'description',
         'created_at',
         'updated_at',
     ];
+
+    public function offre()
+    {
+        return $this->belongsTo(OffreCommercial::class, 'offre_commercial_id', 'id');
+    }
 }
