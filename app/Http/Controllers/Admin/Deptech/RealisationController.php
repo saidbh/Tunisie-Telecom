@@ -44,8 +44,8 @@ class RealisationController extends Controller
             'offres_id'=> 'bail|required',
             'realisation_date'=> 'bail|required',
             'realisation'=>'bail|required',
-            'realisation_rate'=>'bail|required',
-            'rest_per_objectifs'=>'bail|required',
+            'last_realisation' => 'bail',
+            'objectifs' => 'bail|required'
         ]);
 
         if ($validator->fails()) {
@@ -57,8 +57,16 @@ class RealisationController extends Controller
             $data->offres_id = $request->offres_id;
             $data->realisation_date = $request->realisation_date;
             $data->realisation = $request->realisation;
-            $data->realisation_rate = $request->realisation_rate;
-            $data->rest_per_objectifs = $request->rest_per_objectifs;
+            if($request->has('last_realisation'))
+            {
+                $lastvalue = DataOffres::where('id',$request->last_realisation)->first();
+                $data->realisation_rate = intval($request->realisation / $lastvalue->rest_per_objectifs * 100);
+                $data->rest_per_objectifs = $lastvalue->rest_per_objectifs - $request->realisation;
+            }else
+            {
+                $data->realisation_rate = intval($request->realisation / $request->objectifs * 100);
+                $data->rest_per_objectifs = $request->objectifs - $request->realisation;
+            }
             $data->save(); 
 
         } catch (QueryException $e) {

@@ -23,7 +23,7 @@ class OffresController extends Controller
     {
         $offres = OffreType::all();
         $objectiftypes = ObjectifTypes::all();
-        $offrelist = offres::where('offre_type_id', !null)->where('departements_id',1)->get();
+        $offrelist = offres::where('departements_id',1)->get();
         return view('admin.deptech.offres.index',compact('offres','objectiftypes','offrelist'));
     }
 
@@ -129,12 +129,42 @@ class OffresController extends Controller
             return redirect()->back()->withInput();
         }
         try {
-            offres::where('id',$id)->update([
+            $updatedOffre = offres::where('id',$id)->update([
                 'offre_type_id' => $request->offre_type,
                 'objectif_types_id' => $request->objectif_type,
                 'objectif_date' => $request->objectif_date,
                 'objectifs' => $request->objectifs,
             ]);
+            $list = array();
+            $updatedOffre = offres::where('id',$id)->first();
+            $updateData = DataOffres::where('offres_id',$id)->get();
+            foreach($updateData as $key=>$data)
+            {
+                array_push($list,$data->id);
+                if($data->offre->ObjectifType->id == $updatedOffre->ObjectifType->id)
+                {
+                    if ($key == 0)
+                    {
+                        $update = DataOffres::where('id',$data->id)->first();
+                        DataOffres::where('id',$update->id)->update([
+                            'realisation_rate' => intval($update->realisation / $request->objectifs * 100),
+                            'rest_per_objectifs' => $request->objectifs - $update->realisation 
+                        ]);
+                        if(count($updateData) == 1)
+                        {
+                            break;
+                        }
+                    }else
+                    {
+                        $lastValue = DataOffres::where('id',$list[$key-1])->first();
+                        $update = DataOffres::where('id',$data->id)->first();
+                        DataOffres::where('id',$update->id)->update([
+                            'realisation_rate' => intval($update->realisation / $update->rest_per_objectifs * 100),
+                            'rest_per_objectifs' => $lastValue->rest_per_objectifs - $update->realisation
+                        ]);
+                    }
+                }
+            }
         } catch (QueryException $e) {
             Session::flash('error', $e->getMessage());
             return redirect()->back()->withInput();

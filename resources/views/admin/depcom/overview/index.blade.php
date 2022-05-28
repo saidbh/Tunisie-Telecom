@@ -90,6 +90,7 @@
                         offre:$(this).val(),
                     },
                     success: function (data) {
+                        $('#chart').empty();
                         var realisation = [];
                         var realisation_rate = [];
                         var rest = [];

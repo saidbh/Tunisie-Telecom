@@ -23,7 +23,7 @@
 {{--                                            <a href="#" class="btn btn-success">Excel</a>--}}
                                             <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#offres-managment">Ajouter</a>
                                             <div class="modal fade" id="offres-managment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-xl" role="document">
+                                                <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLongTitle">Gestion des offres</h5>
@@ -36,29 +36,23 @@
                                                         <div class="modal-body">
                                                             <div class="container-fluid">
                                                               <input type="hidden" class="form-control" id="offres_id" name="offres_id" value="{{ $offre->id  }}" required>
+                                                              <input type="hidden" class="form-control" id="objectifs" name="objectifs" value="{{ $offre->objectifs }}" required>
+                                                              @foreach($realisations as $realisation)
+                                                              @if($loop->last)
+                                                              <input type="hidden" class="form-control" id="last_realisation" name="last_realisation" value="{{ $realisation->id  }}" required>
+                                                              @endif
+                                                              @endforeach
                                                                 <div class="row">
-                                                                  <div class="col-md-3">
+                                                                  <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="realisation_date">Date</label>
                                                                         <input type="datetime-local" class="form-control" id="realisation_date" name="realisation_date" required>
                                                                     </div>
                                                                 </div>
-                                                                    <div class="col-md-3">
+                                                                    <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="realisation">Realisation</label>
                                                                             <input type="text" class="form-control" id="realisation" name="realisation" required>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label for="realisation_rate">Taux de realisation</label>
-                                                                            <input type="text" class="form-control" id="realisation_rate" name="realisation_rate" readonly required>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <div class="form-group">
-                                                                            <label for="rest_per_objectifs">Reste par objectifs</label>
-                                                                            <input type="text" class="form-control" id="rest_per_objectifs" name="rest_per_objectifs" readonly required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -96,13 +90,13 @@
                                         <td>{{ $realisation->id }}</td>
                                         <td>{{ $realisation->realisation_date }}</td>
                                         <td>{{ $realisation->realisation }}</td>
-                                        <td>{{ $realisation->realisation_rate }}</td>
+                                        <td>{{ $realisation->realisation_rate }} %</td>
                                         <td>{{ $realisation->rest_per_objectifs }}</td>                                    
                                         <td>
                                             <div class="flex align-items-center list-user-action">
-                                                  <span data-toggle="modal" data-target="#editoffres{{ $realisation->id }}">
+{{--                                                   <span data-toggle="modal" data-target="#editoffres{{ $realisation->id }}">
                                                     <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{ route('realisation-offres-list.edit',$realisation->id) }}"><i class="ri-pencil-line"></i></a>
-                                                  </span>
+                                                  </span> --}}
                                                   <div class="modal fade" id="#" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-xl" role="document">
                                                         <div class="modal-content">
@@ -153,9 +147,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                  <span data-toggle="modal" data-target="#deleteoffres{{ $realisation->id }}">
+                                                @if($loop->last)
+                                                <span data-toggle="modal" data-target="#deleteoffres{{ $realisation->id }}">
                                                     <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
                                                   </span>
+                                                @endif
                                                 <div class="modal fade" id="deleteoffres{{ $realisation->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">

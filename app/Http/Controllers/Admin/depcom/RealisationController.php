@@ -58,11 +58,14 @@ class RealisationController extends Controller
             return redirect()->back()->withInput();
         }
         try {
-            $inputFileName = $request->file('files');
-            $inputFileType = IOFactory::identify($inputFileName);
-            $reader = IOFactory::createReader($inputFileType);
-            $spreadsheet = $reader->load($inputFileName);
-            $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+            if(!is_array($request->file('files')))
+            {
+                $inputFileName = $request->file('files');
+                $inputFileType = IOFactory::identify($inputFileName);
+                $reader = IOFactory::createReader($inputFileType);
+                $spreadsheet = $reader->load($inputFileName);
+                $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+            }
             switch($request->offresCom_id)
             {
                 case(1):
@@ -86,7 +89,6 @@ class RealisationController extends Controller
                                 do {
                                     if($sub->name == $spreadsheet->getActiveSheet()->getCell('C'.$row)->getValue())
                                     {
-                                        array_push($array,$spreadsheet->getActiveSheet()->getCell('C'.$row)->getValue());
                                         $TotalCell += $spreadsheet->getActiveSheet()->getCell($i.$row)->getValue();
                                         $j++;
                                         $row++;
@@ -116,8 +118,100 @@ class RealisationController extends Controller
                     }
                     break;
                 case(6):
-                case(7):
+                        $TotalCell = $spreadsheet->getSheet(0)->getCell('C116')->getValue() + $spreadsheet->getSheet(0)->getCell('C118')->getValue();
+                            $rate = $TotalCell / $request->objectifs * 100;
+                            $rest = $request->objectifs - $TotalCell;
+                            $data = new DataOffres();
+                            $data->offres_id = $request->offres_id;
+                            $data->realisation_date = $request->date;
+                            $data->realisation = $TotalCell;
+                            $data->realisation_rate = $rate;
+                            $data->rest_per_objectifs = $rest;
+                            $data->save();
+                    break;
+                case(7): 
+                    $c1 = $spreadsheet->getSheet(0)->getCell('C32')->getValue();
+                    $c2 = $spreadsheet->getSheet(0)->getCell('C34')->getValue();
+                    $c3 = $spreadsheet->getSheet(0)->getCell('C44')->getValue();
+                    $c4 = $spreadsheet->getSheet(0)->getCell('C46')->getValue();
+                    $c5 = $spreadsheet->getSheet(0)->getCell('C56')->getValue();
+                    $c6 = $spreadsheet->getSheet(0)->getCell('C58')->getValue();
+                    $c7 = $spreadsheet->getSheet(0)->getCell('C68')->getValue();
+                    $c8 = $spreadsheet->getSheet(0)->getCell('C70')->getValue();
+                     $TotalCell = $c1 + $c2 + $c3 + $c4 + $c5 + $c6 + $c7 + $c8 ;
+                    $rate = $TotalCell / $request->objectifs * 100;
+                    $rest = $request->objectifs - $TotalCell;
+                    $data = new DataOffres();
+                    $data->offres_id = $request->offres_id;
+                    $data->realisation_date = $request->date;
+                    $data->realisation = $TotalCell;
+                    $data->realisation_rate = $rate;
+                    $data->rest_per_objectifs = $rest;
+                    $data->save();
+                    break;
                 case(8):
+                    $TotalCell1 = 0; 
+                    $TotalCell2 = 0;
+                    foreach($request->file('files') as $file)
+                    {
+                        $inputFileType = IOFactory::identify($file);
+                        $reader = IOFactory::createReader($inputFileType);
+                        $spreadsheet = $reader->load($file);
+                        $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
+                        try
+                        {
+                            $c1 = $spreadsheet->getSheet(0)->getCell('F32')->getValue();
+                            $c2 = $spreadsheet->getSheet(0)->getCell('F34')->getValue();
+                            $c3 = $spreadsheet->getSheet(0)->getCell('F44')->getValue();
+                            $c4 = $spreadsheet->getSheet(0)->getCell('F46')->getValue();
+                            if(is_int($c1) && is_int($c2) && is_int($c3) && is_int($c4))
+                            {
+                                $TotalCell1 = $c1 + $c2 + $c3 + $c4;
+                            }
+
+                        }catch(Exception $e)
+                        {
+                            //
+                        }
+                        try
+                        {
+                            $b1 = $spreadsheet->getSheet(0)->getCell('C8')->getValue();
+                            $b2 = $spreadsheet->getSheet(0)->getCell('C10')->getValue();
+                            $b3 = $spreadsheet->getSheet(0)->getCell('C20')->getValue();
+                            $b4 = $spreadsheet->getSheet(0)->getCell('C22')->getValue();
+                            $b5 = $spreadsheet->getSheet(0)->getCell('C80')->getValue();
+                            $b6 = $spreadsheet->getSheet(0)->getCell('C82')->getValue();
+                            $b7 = $spreadsheet->getSheet(0)->getCell('C92')->getValue();
+                            $b8 = $spreadsheet->getSheet(0)->getCell('C94')->getValue();
+                            $b9 = $spreadsheet->getSheet(0)->getCell('C104')->getValue();
+                            $b10 = $spreadsheet->getSheet(0)->getCell('C106')->getValue();
+                            if(is_int($b1) && is_int($b2) && is_int($b3) && is_int($b4) && is_int($b5) && is_int($b6) && is_int($b7) && is_int($b8) && is_int($b9) && is_int($b10))
+                            {
+                                $TotalCell2 = $b1 + $b2 + $b3 + $b4 + $b5 + $b6 + $b7 + $b8 + $b9 + $b10;
+                            }
+
+                        }catch(Exception $e)
+                        {
+                            //
+                        }
+                    }
+                    if($TotalCell1 && $TotalCell2)
+                    {
+                        $TotalCell = $TotalCell1 + $TotalCell2;
+                        $rate = $TotalCell / $request->objectifs * 100;
+                        $rest = $request->objectifs - $TotalCell;
+                        $data = new DataOffres();
+                        $data->offres_id = $request->offres_id;
+                        $data->realisation_date = $request->date;
+                        $data->realisation = $TotalCell;
+                        $data->realisation_rate = $rate;
+                        $data->rest_per_objectifs = $rest;
+                        $data->save();
+                    }else
+                    {
+                        Session::flash('error','Erreur fichiers !');
+                        return redirect()->back()->withInput();
+                    }
                     break;
                 case(9):
                 case(10):

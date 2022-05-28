@@ -32,28 +32,16 @@
                         <div class="iq-card-body">
                             <div class="container-fluid">
                                 <div class="row">
-                                  <div class="col-md-3">
+                                  <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="realisation_date">Date </label>
                                         <input type="datetime-local" class="form-control" id="realisation_date" name="realisation_date" value="{{ date("Y-m-d H:i",strtotime($realisation->realisation_date)) }}" required>
                                     </div>
                                 </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="realisation">Realisation</label>
                                             <input type="text" class="form-control" id="realisation" name="realisation" value="{{ $realisation->realisation }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="realisation_rate{{ $realisation->id }}">Taux de realisation</label>
-                                            <input type="text" class="form-control" id="realisation_rate" name="realisation_rate" value="{{ $realisation->realisation_rate }}" readonly required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="rest_per_objectifs{{ $realisation->id }}">Reste par objectifs</label>
-                                            <input type="text" class="form-control" id="rest_per_objectifs" name="rest_per_objectifs" value="{{ $realisation->rest_per_objectifs }}" readonly required>
                                         </div>
                                     </div>
                                 </div>

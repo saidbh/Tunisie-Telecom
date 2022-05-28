@@ -49,7 +49,11 @@
                                                                         <div class="col-md-9">
                                                                             <div class="form-group">
                                                                                 <label for="realisation_date">Upload fichiers</label>
+                                                                                @if ($offre->CommercialOffre->id == 8)
+                                                                                <input type="file" class="form-control" id="files" name="files[]" multiple required>
+                                                                                 @else
                                                                                 <input type="file" class="form-control" id="files" name="files" required>
+                                                                                @endif
                                                                             </div>
                                                                         </div>
 {{--                                                                        <div class="col-md-3">--}}
