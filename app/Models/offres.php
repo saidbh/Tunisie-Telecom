@@ -69,4 +69,8 @@ class offres extends Model
     {
         return $this->hasOne(OffreCommercial::class,'id','offre_commercial_id');
     }
+    public function departement()
+    {
+        return $this->hasOne(departements::class,'id','departements_id');
+    }
 }

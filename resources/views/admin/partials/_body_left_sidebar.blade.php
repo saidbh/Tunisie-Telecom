@@ -3,7 +3,7 @@
   <div class="iq-sidebar-logo d-flex justify-content-between">
     <a href="{{ route('admin.dashboard') }}">
 {{--      <img src="{{ asset('assets/images/logo.jpg') }}" class="img-fluid" alt="">--}}
-      <span class="text-white">T T</span>
+    <h5 class="text-white">Tunisie Telecom</h5>
     </a>
     <div class="iq-menu-bt align-self-center">
       <div class="wrapper-menu">

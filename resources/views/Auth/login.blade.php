@@ -33,7 +33,35 @@
                             </form>
                         </div>
                         <div class="sign-info">
-                             <span class="dark-color d-inline-block line-height-2"><a href=""> Mot de passe oublié </a></span>
+                             <span class="dark-color d-inline-block line-height-2"><a href="#" data-toggle="modal" data-target="#recovery"> Mot de passe oublié </a></span>
+                             <div class="modal fade" id="recovery" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">Renisialiser mot de passe</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <form action="{{ route('recoverView') }}" method="POST" class="was-validated" enctype="multipart/form-data">
+                                        @csrf
+                                    <div class="modal-body">
+                                      <div class="container">
+                                          <div class="row">
+                                              <div class="col-md-12">
+                                                  <input type="email" class="form-control" id="recovery" name="recovery" required>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                      <button type="submit" class="btn btn-success">Valider</button>
+                                    </div>
+                                </form>
+                                  </div>
+                                </div>
+                              </div>
                             <ul class="iq-social-media">
                                 <li><a href="" target="_blank"><i class="ri-link"></i></a></li>
                                 <li><a href="" target="_blank"><i class="ri-facebook-box-line"></i></a></li>

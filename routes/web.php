@@ -3,6 +3,7 @@ namespace  App\Http\Controllers;
 
 use App\Http\Controllers\Admin\depcom\OffresController;
 use App\Http\Controllers\Admin\depcom\RealisationController;
+use App\Http\Controllers\Auth\RecoveryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -32,8 +33,9 @@ Route::group(['middleware'=>'guest'],function(){
     });
 
     Route::group(['prefix'=>'recover'],function(){
-        Route::get('/', [AuthController::class, 'recoverPasswordView'])->name('recover');
-        Route::post('/', [AuthController::class, 'recoverPassword'])->name('recover');
+        Route::post('/view/validation/code', [RecoveryController::class, 'CodeView'])->name('recoverView');
+        Route::get('/new/password', [RecoveryController::class, 'CodeVerification'])->name('newpwd');
+        Route::get('/password/validation', [RecoveryController::class, 'NewPasswordValidation'])->name('new_password');
     });
 });
 
@@ -174,6 +176,17 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
             'edit' => 'realisation-commercial.edit',
             'update' => 'realisation-commercial.update',
             'destroy' => 'realisation-commercial.destroy'
+        ]);
+    });
+    Route::group(['prefix'=>'report','name'=>'reporting'],function(){
+        Route::resource('report-list', Admin\report\ReportController::class)->names([
+            'index' => 'report-list',
+            'create' => 'report-list.create',
+            'store' => 'report-list.store',
+            'edit' => 'report-list.edit',
+            'show' => 'report-list.show',
+            'update' => 'report-list.update',
+            'destroy' => 'report-list.destroy'
         ]);
     });
 

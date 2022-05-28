@@ -27,7 +27,7 @@ class PermissionsSeeder extends Seeder
             array('id' => '8','roles_id' => '1','sub_categories_id' => '8','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
             array('id' => '9','roles_id' => '1','sub_categories_id' => '9','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
             array('id' => '10','roles_id' => '1','sub_categories_id' => '10','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
-
+            array('id' => '11','roles_id' => '1','sub_categories_id' => '11','can_read' => '1','can_create' => '1','can_update' => '1','can_delete' => '1','access' => '1'),
         );
 
         DB::table('permissions')->insert($permissions);
