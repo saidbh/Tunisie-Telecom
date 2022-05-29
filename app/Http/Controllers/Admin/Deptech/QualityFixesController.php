@@ -65,8 +65,8 @@ class QualityFixesController extends Controller
             $fixes->start_date = $request->start_date;
             $fixes->end_date = $request->end_date;
             $fixes->zone = $spreadsheet->getSheet(4)->getCell('B7')->getValue();
-            $fixes->dgt_raise = $spreadsheet->getSheet(4)->getCell('AI13')->getValue();
-            $fixes->dgt_raised_actual = $spreadsheet->getSheet(4)->getCell('AJ13')->getValue();
+            $fixes->dgt_raise = intval($spreadsheet->getSheet(4)->getCell('AI13')->getValue());
+            $fixes->dgt_raised_actual = intval($spreadsheet->getSheet(4)->getCell('AJ13')->getValue());
             $fixes->Succession_rate = number_format($spreadsheet->getSheet(4)->getCell('AK13')->getValue()*100,2,".",".");
             $fixes->Succession_rate_24h = number_format($spreadsheet->getSheet(4)->getCell('AL13')->getValue()*100,2,".",".");
             $fixes->Succession_rate_48h = number_format($spreadsheet->getSheet(4)->getCell('AM13')->getValue()*100,2,".",".");
@@ -123,6 +123,13 @@ class QualityFixesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            QualityStatistics::where('id',$id)->delete();
+        } catch (QueryException $e) {
+            Session::flash('error', $e->getMessage());
+            return redirect()->back()->withInput();
+        }
+        Session::flash('success', 'statistiques supprimer avec succés');
+        return redirect()->route('fixes-list');
     }
 }

@@ -98,7 +98,7 @@
                                                     <a data-toggle="tooltip" data-placement="top" title="Statistiques" href="#"><i class="ri-bar-chart-grouped-line"></i></a>
                                                   </span>
                                                     <div class="modal fade" id="stat{{ $fix->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
+                                                        <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalLabel">Statistiques</h5>
@@ -107,7 +107,8 @@
                                                             </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <div id="chart"></div>
+                                                                <div id="chart{{ $fix->id }}"></div>
+                                                                <div id="chart2{{ $fix->id }}"></div>
                                                             <script>
                                                                 var options = {
                                                                     "chart": {
@@ -135,12 +136,39 @@
                                                                             }
                                                                         }
                                                                     },
-                                                                    "series": [1, 3, 12],
-                                                                    "labels": ["My Object 1", "My Object 2", "My Object 3"]
+                                                                    "series": [ {{ $fix->Succession_rate }}, {{ $fix->Succession_rate_24h }}, {{ $fix->Succession_rate_48h }}, {{ $fix->Succession_rate_72h }}, {{ $fix->H48_drg_speed }}],
+                                                                    "labels": ["Taux de relève", "Taux de relève en 24H","Taux relève en 48H","Taux de relève en 72H","Vitesse DRG 48H sans vol de cable"]
                                                                 }
-                                                                var chart = new ApexCharts(document.querySelector('#chart'),
+                                                                var chart = new ApexCharts(document.querySelector('#chart'+{{ $fix->id }}),
                                                                     options
                                                                 );
+                                                                chart.render();
+                                                            </script>
+                                                            <script>
+
+                                                                var options = {
+                                                                series: [{
+                                                                data: [{{ $fix->dgt_raise }}, {{ $fix->dgt_raised_actual }},{{ $fix->mttr_adsl }}]
+                                                                }],
+                                                                chart: {
+                                                                type: 'bar',
+                                                                height: 350
+                                                                },
+                                                                plotOptions: {
+                                                                bar: {
+                                                                    borderRadius: 4,
+                                                                    horizontal: true,
+                                                                }
+                                                                },
+                                                                dataLabels: {
+                                                                enabled: false
+                                                                },
+                                                                xaxis: {
+                                                                categories: ['DGT à relever','DGT à relever réels','MTTR ADSL (Heures)'],
+                                                                }
+                                                                };
+
+                                                                var chart = new ApexCharts(document.querySelector("#chart2"+{{ $fix->id }}), options);
                                                                 chart.render();
                                                             </script>
                                                             </div>
@@ -153,7 +181,7 @@
                                                   <span data-toggle="modal" data-target="#deleteoffres{{ $fix->id }}">
                                                     <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
                                                   </span> 
-                                                <div class="modal fade" id="stat{{ $fix->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="deleteoffres{{ $fix->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -162,7 +190,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="" method="post">
+                                                            <form action="{{ route('offres-list.destroy',$fix->id) }}" method="post">
                                                                 @csrf
                                                                 @method('delete')
                                                             <div class="modal-body">

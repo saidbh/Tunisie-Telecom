@@ -54,7 +54,8 @@ class QualityStatistics extends Model
         'Succession_rate_24h',
         'Succession_rate_48h', 
         'Succession_rate_72h', 
-        'H48_drg_speed'
+        'H48_drg_speed',
+        'mttr_adsl'
     ];
     
 }

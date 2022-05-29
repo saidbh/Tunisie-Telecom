@@ -65,13 +65,14 @@ class QualityAdslController extends Controller
             $fixes->start_date = $request->start_date;
             $fixes->end_date = $request->end_date;
             $fixes->zone = $spreadsheet->getSheet(3)->getCell('B6')->getValue();
-            $fixes->dgt_raise = $spreadsheet->getSheet(3)->getCell('AI12')->getValue();
-            $fixes->dgt_raised_actual = $spreadsheet->getSheet(3)->getCell('AJ12')->getValue();
+            $fixes->dgt_raise = intval($spreadsheet->getSheet(3)->getCell('AI12')->getValue());
+            $fixes->dgt_raised_actual = intval($spreadsheet->getSheet(3)->getCell('AJ12')->getValue());
             $fixes->Succession_rate = number_format($spreadsheet->getSheet(3)->getCell('AK12')->getValue()*100,2,".",".");
             $fixes->Succession_rate_24h = number_format($spreadsheet->getSheet(3)->getCell('AL12')->getValue()*100,2,".",".");
             $fixes->Succession_rate_48h = number_format($spreadsheet->getSheet(3)->getCell('AM12')->getValue()*100,2,".",".");
             $fixes->Succession_rate_72h = number_format($spreadsheet->getSheet(3)->getCell('AN12')->getValue()*100,2,".",".");
             $fixes->H48_drg_speed = number_format($spreadsheet->getSheet(3)->getCell('AO12')->getValue()*100,2,".",".");
+            $fixes->mttr_adsl = $spreadsheet->getSheet(3)->getCell('AP12')->getValue();
             $fixes->save();
         } catch (QueryException $e) {
             Session::flash('error', $e->getMessage());
@@ -123,6 +124,13 @@ class QualityAdslController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            QualityStatistics::where('id',$id)->delete();
+        } catch (QueryException $e) {
+            Session::flash('error', $e->getMessage());
+            return redirect()->back()->withInput();
+        }
+        Session::flash('success', 'statistiques supprimer avec succés');
+        return redirect()->route('offres-list');
     }
 }

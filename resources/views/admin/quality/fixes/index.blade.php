@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <div id="content-page" class="content-page">
         <div class="container-fluid">
             <div class="row">
@@ -17,7 +18,7 @@
                             <div class="iq-header-title w-100">
                                 <div class="row">
                                     <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
-                                        <h4 class="card-title m-0">Liste des Statistiques Fixes</h4>
+                                        <h4 class="card-title m-0">Liste des Statistiques ADSL</h4>
                                         <div class="d-flex flex-row">
 {{--                                            <a href="#" class="btn mx-1 btn-success">PDF</a>--}}
 {{--                                            <a href="#" class="btn btn-success">Excel</a>--}}
@@ -26,7 +27,7 @@
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLongTitle">Gestion des Statistiques Fixes</h5>
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Gestion des Statistiques ADSL</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
@@ -93,13 +94,94 @@
                                         <td>{{ $fix->created_at }}</td>
                                         <td>
                                             <div class="flex align-items-center list-user-action">
-                                                <span >
+                                                <span data-toggle="modal" data-target="#stat{{ $fix->id }}">
                                                     <a data-toggle="tooltip" data-placement="top" title="Statistiques" href="#"><i class="ri-bar-chart-grouped-line"></i></a>
-                                                  </span> 
-                                                  <span data-toggle="modal" data-target="#deleteoffres">
+                                                  </span>
+                                                    <div class="modal fade" id="stat{{ $fix->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Statistiques</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div id="chart{{ $fix->id }}"></div>
+                                                                <div id="chart2{{ $fix->id }}"></div>
+                                                            <script>
+                                                                var options = {
+                                                                    "chart": {
+                                                                        "height": 350,
+                                                                        "type": "pie",
+                                                                        "toolbar": {
+                                                                            "show": true,
+                                                                            "tools": {
+                                                                                "download": true,
+                                                                                "selection": false,
+                                                                                "zoom": false,
+                                                                                "zoomin": false,
+                                                                                "zoomout": false,
+                                                                                "pan": false,
+                                                                                "reset": false
+                                                                            },
+                                                                            "autoSelected": "zoom"
+                                                                        },
+                                                                        events: {
+                                                                            dataPointSelection: function (event, chartContext, config) {
+                                                                                console.log(config.dataPointIndex + " " + config.seriesIndex);
+                                                                            },
+                                                                            click: function (event, chartContext, config) {
+                                                                                console.log(config.dataPointIndex + " " + config.seriesIndex);
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "series": [ {{ $fix->Succession_rate }}, {{ $fix->Succession_rate_24h }}, {{ $fix->Succession_rate_48h }}, {{ $fix->Succession_rate_72h }}, {{ $fix->H48_drg_speed }}],
+                                                                    "labels": ["Taux de relève", "Taux de relève en 24H","Taux relève en 48H","Taux de relève en 72H","Vitesse DRG 48H sans vol de cable"]
+                                                                }
+                                                                var chart = new ApexCharts(document.querySelector('#chart'+{{ $fix->id }}),
+                                                                    options
+                                                                );
+                                                                chart.render();
+                                                            </script>
+                                                            <script>
+
+                                                                var options = {
+                                                                series: [{
+                                                                data: [{{ $fix->dgt_raise }}, {{ $fix->dgt_raised_actual }},]
+                                                                }],
+                                                                chart: {
+                                                                type: 'bar',
+                                                                height: 350
+                                                                },
+                                                                plotOptions: {
+                                                                bar: {
+                                                                    borderRadius: 4,
+                                                                    horizontal: true,
+                                                                }
+                                                                },
+                                                                dataLabels: {
+                                                                enabled: false
+                                                                },
+                                                                xaxis: {
+                                                                categories: ['DGT à relever','DGT à relever réels',],
+                                                                }
+                                                                };
+
+                                                                var chart = new ApexCharts(document.querySelector("#chart2"+{{ $fix->id }}), options);
+                                                                chart.render();
+                                                            </script>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                    </div> 
+                                                  <span data-toggle="modal" data-target="#deleteoffres{{ $fix->id }}">
                                                     <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
                                                   </span> 
-                                                <div class="modal fade" id="deleteoffres" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade" id="deleteoffres{{ $fix->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -108,7 +190,7 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="" method="post">
+                                                            <form action="{{ route('fixes-list.destroy',$fix->id) }}" method="post">
                                                                 @csrf
                                                                 @method('delete')
                                                             <div class="modal-body">
@@ -156,7 +238,6 @@
         }
 
     </style>
-
     <script>
         $(document).ready(function() {
             $('#offre-table').DataTable({
