@@ -8,7 +8,7 @@
           <li class="list-inline-item"><a href="{{-- {{ route('terms_of_service') }} --}}">Terms of Use</a></li>
         </ul>
       </div>
-      <div class="col-lg-6 text-right"> Copyright 2021 <a href="#" target="_blank">Tunisie Telecom</a> All Rights Reserved.</div>
+      <div class="col-lg-6 text-right"> Copyright 2022 <a href="#" target="_blank">Tunisie Telecom</a> All Rights Reserved.</div>
     </div>
   </div>
 </footer>

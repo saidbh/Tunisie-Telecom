@@ -4,15 +4,16 @@
         <div class="container-fluid">
             <div class="row row-eq-height">
                 <!-- Content Top Banner Start -->
-                <div class="col-md-12 col-lg-8">
+                <div class="col-md-12 col-lg-12">
                     <div class="iq-card bg-primary sb-top-banner-card">
                         <div class="iq-card-body pt-5 pb-5">
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
-                                    <h2 class="text-white">Congratulations</h2>
-                                    <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                        remaining essentially unchanged.</p>
-                                    <button type="button" class="btn iq-bg-primary">Read More</button>
+                                    <h2 class="text-white">Bienvenue</h2>
+                                    <p class="text-white">
+                                        Bienvenue dans la plateforme BI permettant le suivi des clés de performance liés à la gestion des ventes et des offres chez Tunisie Télécom 
+                                    </p>
+                                    <button type="button" class="btn iq-bg-primary">Voir plus</button>
                                 </div>
                                 <div class="col-md-6 position-relative">
                                     <div class="an-img-two">
@@ -24,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-4">
+{{--                 <div class="col-md-12 col-lg-4">
                     <div class="iq-card">
                         <div class="iq-card-body">
                             <div class="row">
@@ -454,7 +455,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

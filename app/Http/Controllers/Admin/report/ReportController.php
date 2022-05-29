@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\report;
 
 use App\Models\offres;
+use App\Models\departements;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 

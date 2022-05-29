@@ -65,6 +65,9 @@ class RecoveryController extends Controller
             if($code->code == $request->pwd_recovery)
             {
                 return view('Recovery.newpassword',['user' => $request->user_recovery]);
+                RecoveryCode::where('users_id',$request->user_recovery)
+                ->where('code',$request->pwd_recovery)
+                ->delete();
             }else{
                 RecoveryCode::where('users_id',$request->user_recovery)
                 ->where('code',$request->pwd_recovery)

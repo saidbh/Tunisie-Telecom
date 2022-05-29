@@ -126,7 +126,7 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
     });
 
     Route::group(['prefix'=>'follow-quality','name'=>'follow-quality'],function(){
-        Route::resource('ADSL', Admin\Deptech\OffresController::class)->names([
+        Route::resource('ADSL', Admin\Deptech\QualityAdslController::class)->names([
             'index' => 'offres-list',
             'create' => 'offres-list.create',
             'store' => 'offres-list.store',
@@ -135,7 +135,7 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
             'destroy' => 'offres-list.destroy'
         ]);
 
-        Route::resource('Fixes', Admin\Deptech\OffresController::class)->names([
+        Route::resource('Fixes', Admin\Deptech\QualityFixesController::class)->names([
             'index' => 'fixes-list',
             'create' => 'fixes-list.create',
             'store' => 'fixes-list.store',
