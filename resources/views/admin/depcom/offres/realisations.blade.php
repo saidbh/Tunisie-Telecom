@@ -48,6 +48,19 @@
                                                                         </div>
                                                                         <div class="col-md-9">
                                                                             <div class="form-group">
+                                                                                <label for="sub_offre">Listes des offres</label>
+                                                                                <select class="form-control" id="sub_offre" name="sub_offre[]" multiple aria-label="multiple select example" required>
+                                                                                    <option></option>
+                                                                                    @foreach ($suboffres as $sub)
+                                                                                        <option value="{{ $sub->id }}">{{ $sub->name }}</option>
+                                                                                    @endforeach
+                                                                                  </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <div class="form-group">
                                                                                 <label for="realisation_date">Upload fichiers</label>
                                                                                 @if ($offre->CommercialOffre->id == 8)
                                                                                 <input type="file" class="form-control" id="files" name="files[]" multiple required>
@@ -229,6 +242,10 @@
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/fr_fr.json'
                 }
+            });
+            $('#sub_offre').selectpicker({
+                liveSearch:true,
+                noneResultsText:'Aucun résultat correspondant'
             });
             $('#offre-type').selectpicker({
                 liveSearch:false,

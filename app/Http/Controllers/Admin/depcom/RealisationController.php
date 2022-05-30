@@ -51,7 +51,8 @@ class RealisationController extends Controller
             'date'=> 'bail|required',
             'objectifs'=> 'bail|required',
             'type' => 'bail|required',
-            'offresCom_id' => 'bail|required'
+            'offresCom_id' => 'bail|required',
+            'sub_offre.*' => 'bail|required'
         ]);
         if ($validator->fails()) {
             Session::flash('error', $validator->errors()->first());
@@ -78,7 +79,7 @@ class RealisationController extends Controller
                         $cell = $spreadsheet->getActiveSheet()->getCell($i.'4')->getValue();
                         if ($cell == 'Total')
                         {
-                            $subOffres = SubOffreCommercial::where('offre_commercial_id',$request->offres_id)->get();
+                            $subOffres = SubOffreCommercial::whereIn('id',$request->sub_offre)->get();
                             $TotalCell = 0;
                             $limit = 0;
                             $array = [];
@@ -278,7 +279,8 @@ class RealisationController extends Controller
     {
         $offre = offres::where('id',$id)->first();
         $realisations = DataOffres::where('offres_id',$id)->get();
-        return view('admin.depcom.offres.realisations',compact('offre','realisations'));
+        $suboffres = SubOffreCommercial::where('offre_commercial_id',$offre->offre_commercial_id)->get();
+        return view('admin.depcom.offres.realisations',compact('offre','realisations','suboffres'));
     }
 
     /**
