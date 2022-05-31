@@ -92,20 +92,25 @@ class RealisationController extends Controller
                             $row = $s;
                         }
                     }
-                    $subOffres = SubOffreCommercial::get();
+                    $subOffres = SubOffreCommercial::where('offre_commercial_id',$request->offres_id)->get();
                     $TotalCell = 0;
-                    $limit = 1;
+                    $limit = 0;
                     $array = [];
-                    foreach($subOffres as $sub)
+                    
+                    foreach($request->sub_offre as $sub)
                     {
-                            if($sub->name == $spreadsheet->getActiveSheet()->getCell('C'.$row)->getValue())
+                        for($j=0;$j<=200;$j++)
+                        {
+                            if($sub == $spreadsheet->getActiveSheet()->getCell('C'.$row)->getValue())
                             {
-                                array_push($array,$sub->name);
                                 $TotalCell += $spreadsheet->getActiveSheet()->getCell($col.$row)->getValue();
                                 $row++;
+                                $limit++;
+                                $j++;  
                             }
                             $row++;
-                    }
+                        }
+                    } 
                     $rate = $TotalCell / $request->objectifs * 100;
                     $rest = $request->objectifs - $TotalCell;
                     $data = new DataOffres();
