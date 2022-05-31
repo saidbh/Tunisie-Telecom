@@ -74,56 +74,47 @@ class RealisationController extends Controller
                         case(3):
                             case(4):
                                 case(5):
-                                    for($s=0;$s<=1000;$s++)
-                                    {
-                                        if($spreadsheet->getActiveSheet()->getCell('B'.$s)->getValue() == $request->type)
-                                        {
-                                            $row = $s;
-                                        }
-                                    }
+                                    $col = '';
                     for ($i = 'a'; $i < 'zz'; $i++)
                     {
                         $cell = $spreadsheet->getActiveSheet()->getCell($i.'4')->getValue();
                         if ($cell == 'Total')
                         {
-                            $subOffres = SubOffreCommercial::get();
-                            $TotalCell = 0;
-                            $limit = 0;
-                            $array = [];
-                            foreach($subOffres as $sub)
-                            {
-                                $j = 0;
-                                do {
-                                    if($sub->name == $spreadsheet->getActiveSheet()->getCell('C'.$row)->getValue())
-                                    {
-                                        return $sub->name;
-                                        $TotalCell += $spreadsheet->getActiveSheet()->getCell($i.$row)->getValue();
-                                        $j++;
-                                        $row++;
-                                        $limit++;
-                                    }else
-                                    {
-                                        $j++;
-                                        $row++;
-                                    }
-                                    if($limit == count($subOffres) - 1)
-                                    {
-                                        break;
-                                    }
-                                } while ($j <= 1000);
-                            }
-                            $rate = $TotalCell / $request->objectifs * 100;
-                            $rest = $request->objectifs - $TotalCell;
-                            $data = new DataOffres();
-                            $data->offres_id = $request->offres_id;
-                            $data->realisation_date = $request->date;
-                            $data->realisation = $TotalCell;
-                            $data->realisation_rate = $rate;
-                            $data->rest_per_objectifs = $rest;
-                            $data->save();
+                            $col = $i;
                             break;
                         }
                     }
+                    $row = 0;
+                    for($s=0;$s<=1000;$s++)
+                    {
+                        if($spreadsheet->getActiveSheet()->getCell('B'.$s)->getValue() == $request->type)
+                        {
+                            $row = $s;
+                        }
+                    }
+                    $subOffres = SubOffreCommercial::get();
+                    $TotalCell = 0;
+                    $limit = 1;
+                    $array = [];
+                    foreach($subOffres as $sub)
+                    {
+                            if($sub->name == $spreadsheet->getActiveSheet()->getCell('C'.$row)->getValue())
+                            {
+                                array_push($array,$sub->name);
+                                $TotalCell += $spreadsheet->getActiveSheet()->getCell($col.$row)->getValue();
+                                $row++;
+                            }
+                            $row++;
+                    }
+                    $rate = $TotalCell / $request->objectifs * 100;
+                    $rest = $request->objectifs - $TotalCell;
+                    $data = new DataOffres();
+                    $data->offres_id = $request->offres_id;
+                    $data->realisation_date = $request->date;
+                    $data->realisation = $TotalCell;
+                    $data->realisation_rate = $rate;
+                    $data->rest_per_objectifs = $rest;
+                    $data->save();
                     break;
                 case(6):
                         $TotalCell = $spreadsheet->getSheet(0)->getCell('C116')->getValue() + $spreadsheet->getSheet(0)->getCell('C118')->getValue();
