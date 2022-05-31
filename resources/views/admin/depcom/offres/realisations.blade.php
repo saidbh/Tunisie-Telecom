@@ -52,7 +52,7 @@
                                                                                 <select class="form-control" id="sub_offre" name="sub_offre[]" multiple aria-label="multiple select example" required>
                                                                                     <option></option>
                                                                                     @foreach ($suboffres as $sub)
-                                                                                        <option value="{{ $sub->id }}">{{ $sub->name }}</option>
+                                                                                        <option value="{{ $sub->name }}">{{ $sub->name }}</option>
                                                                                     @endforeach
                                                                                   </select>
                                                                             </div>

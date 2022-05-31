@@ -179,14 +179,9 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
         ]);
     });
     Route::group(['prefix'=>'report','name'=>'reporting'],function(){
+        Route::post('/donwload/Excel', [Admin\report\ReportController::class, 'getOutputFile'])->name('DownloadExcel');
         Route::resource('report-list', Admin\report\ReportController::class)->names([
             'index' => 'report-list',
-            'create' => 'report-list.create',
-            'store' => 'report-list.store',
-            'edit' => 'report-list.edit',
-            'show' => 'report-list.show',
-            'update' => 'report-list.update',
-            'destroy' => 'report-list.destroy'
         ]);
     });
 

@@ -74,22 +74,29 @@ class RealisationController extends Controller
                         case(3):
                             case(4):
                                 case(5):
+                                    for($s=0;$s<=1000;$s++)
+                                    {
+                                        if($spreadsheet->getActiveSheet()->getCell('B'.$s)->getValue() == $request->type)
+                                        {
+                                            $row = $s;
+                                        }
+                                    }
                     for ($i = 'a'; $i < 'zz'; $i++)
                     {
                         $cell = $spreadsheet->getActiveSheet()->getCell($i.'4')->getValue();
                         if ($cell == 'Total')
                         {
-                            $subOffres = SubOffreCommercial::whereIn('id',$request->sub_offre)->get();
+                            $subOffres = SubOffreCommercial::get();
                             $TotalCell = 0;
                             $limit = 0;
                             $array = [];
                             foreach($subOffres as $sub)
                             {
                                 $j = 0;
-                                $row = 5;
                                 do {
                                     if($sub->name == $spreadsheet->getActiveSheet()->getCell('C'.$row)->getValue())
                                     {
+                                        return $sub->name;
                                         $TotalCell += $spreadsheet->getActiveSheet()->getCell($i.$row)->getValue();
                                         $j++;
                                         $row++;
