@@ -231,9 +231,6 @@
                     url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/fr_fr.json'
                 }
             });
-            function(start, end, label) {
-                alert("A new date range was chosen: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-            });
             $('#sub_offre').selectpicker({
                 liveSearch:true,
                 noneResultsText:'Aucun résultat correspondant'
