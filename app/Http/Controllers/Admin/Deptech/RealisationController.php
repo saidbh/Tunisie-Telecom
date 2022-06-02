@@ -71,7 +71,13 @@ class RealisationController extends Controller
             }else
             {
                 $data->realisation_rate = intval($request->realisation / $request->objectifs * 100);
-                $data->rest_per_objectifs = $request->objectifs - $request->realisation;
+                if( $request->realisation>$request->rest_per_objectifs)
+                {
+                    $data->rest_per_objectifs = 0;
+                }else
+                {
+                    $data->rest_per_objectifs = $request->objectifs - $request->realisation;
+                }
             }
             $data->save(); 
 
