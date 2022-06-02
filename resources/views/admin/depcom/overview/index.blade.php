@@ -19,8 +19,8 @@
                                     <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
                                         <h4 class="card-title m-0">Statistiques</h4>
                                         <div class="d-flex flex-row">
-                                            <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#uploadfiles">Excel</a>
-                                        </div>
+{{--                                             <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#uploadfiles">Excel</a>
+ --}}                                        </div>
                                     </div>
                                 </div>
                             </div>
