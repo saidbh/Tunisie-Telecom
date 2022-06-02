@@ -46,7 +46,7 @@
                                                                   <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="realisation_date">Date</label>
-                                                                        <input type="datetime-local" class="form-control" id="realisation_date" name="realisation_date" required>
+                                                                        <input type="date" class="form-control" id="realisation_date" name="realisation_date" min="" max="" required>
                                                                     </div>
                                                                 </div>
                                                                     <div class="col-md-6">
@@ -188,7 +188,7 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script>
     <style rel="stylesheet">
 
         .custom-select {
@@ -219,6 +219,25 @@
                     url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/fr_fr.json'
                 }
             });
+            let month = {{ date("m",strtotime($offre->objectif_date)) }};
+            if(month<10)
+            {
+                months = '0'+month;
+            }else{
+                month = months;
+            }
+            $('#realisation_date').attr("min",new Date().getFullYear()+'-'+ months +'-01');
+            let day = "";
+            if(month / 2 == 0)
+            {
+                console.log(month);
+                day = "30";
+            }else
+            {
+                day = "31";
+            }
+            console.log(day);
+            $('#realisation_date').attr("max",new Date().getFullYear()+'-'+ months + '-'+day);
             $('#offre-type').selectpicker({
                 liveSearch:false,
                 noneResultsText:'Aucun résultat correspondant'

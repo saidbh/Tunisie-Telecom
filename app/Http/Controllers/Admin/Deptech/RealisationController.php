@@ -60,8 +60,14 @@ class RealisationController extends Controller
             if($request->has('last_realisation'))
             {
                 $lastvalue = DataOffres::where('id',$request->last_realisation)->first();
-                $data->realisation_rate = intval($request->realisation / $lastvalue->rest_per_objectifs * 100);
-                $data->rest_per_objectifs = $lastvalue->rest_per_objectifs - $request->realisation;
+                $data->realisation_rate = $lastvalue->realisation_rate + intval($request->realisation / $request->objectifs * 100);
+                if($lastvalue->rest_per_objectifs == 0 || $request->realisation>$lastvalue->rest_per_objectifs)
+                {
+                    $data->rest_per_objectifs = 0;
+                }else
+                {
+                    $data->rest_per_objectifs = $lastvalue->rest_per_objectifs - $request->realisation;
+                }
             }else
             {
                 $data->realisation_rate = intval($request->realisation / $request->objectifs * 100);

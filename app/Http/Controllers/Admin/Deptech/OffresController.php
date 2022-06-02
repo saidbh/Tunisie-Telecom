@@ -159,7 +159,7 @@ class OffresController extends Controller
                         $lastValue = DataOffres::where('id',$list[$key-1])->first();
                         $update = DataOffres::where('id',$data->id)->first();
                         DataOffres::where('id',$update->id)->update([
-                            'realisation_rate' => intval($update->realisation / $update->rest_per_objectifs * 100),
+                            'realisation_rate' => intval($update->realisation / $request->objectifs * 100),
                             'rest_per_objectifs' => $lastValue->rest_per_objectifs - $update->realisation
                         ]);
                     }

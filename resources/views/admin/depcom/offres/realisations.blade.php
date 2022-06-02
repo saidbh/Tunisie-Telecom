@@ -43,7 +43,7 @@
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label for="realisation">Date</label>
-                                                                                <input type="datetime-local" class="form-control" id="date" name="date" required>
+                                                                                <input type="datetime-local" class="form-control" id="date" name="date"  required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-9">
@@ -69,18 +69,6 @@
                                                                                 @endif
                                                                             </div>
                                                                         </div>
-{{--                                                                        <div class="col-md-3">--}}
-{{--                                                                            <div class="form-group">--}}
-{{--                                                                                <label for="realisation_rate">Taux de realisation</label>--}}
-{{--                                                                                <input type="text" class="form-control" id="realisation_rate" name="realisation_rate" readonly required>--}}
-{{--                                                                            </div>--}}
-{{--                                                                        </div>--}}
-{{--                                                                        <div class="col-md-3">--}}
-{{--                                                                            <div class="form-group">--}}
-{{--                                                                                <label for="rest_per_objectifs">Reste par objectifs</label>--}}
-{{--                                                                                <input type="text" class="form-control" id="rest_per_objectifs" name="rest_per_objectifs" readonly required>--}}
-{{--                                                                            </div>--}}
-{{--                                                                        </div>--}}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -242,6 +230,9 @@
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/fr_fr.json'
                 }
+            });
+            function(start, end, label) {
+                alert("A new date range was chosen: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
             });
             $('#sub_offre').selectpicker({
                 liveSearch:true,
