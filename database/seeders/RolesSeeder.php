@@ -18,7 +18,6 @@ class RolesSeeder extends Seeder
         $roles = array(
             array('id' => '1','name' => 'superadmin','description' => 'superadmin','created_at' => NULL,'updated_at' => NULL),
         );
-
         DB::table('roles')->insert($roles);
     }
 }
