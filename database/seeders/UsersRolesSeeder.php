@@ -17,8 +17,6 @@ class UsersRolesSeeder extends Seeder
     {
         $users_roles = array(
             array('id' => '1','users_id' => '1','roles_id' => '1'),
-            array('id' => '2','users_id' => '2','roles_id' => '2'),
-            array('id' => '3','users_id' => '3','roles_id' => '3'),
         );
         DB::table('users_roles')->insert($users_roles);
     }

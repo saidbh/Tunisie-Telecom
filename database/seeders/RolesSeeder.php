@@ -17,8 +17,6 @@ class RolesSeeder extends Seeder
     {
         $roles = array(
             array('id' => '1','name' => 'superadmin','description' => 'superadmin','created_at' => NULL,'updated_at' => NULL),
-            array('id' => '2','name' => 'Admin','description' => 'admin','created_at' => '2022-04-16 15:28:49','updated_at' => '2022-04-16 15:28:49'),
-            array('id' => '3','name' => 'Creator','description' => 'users','created_at' => '2022-04-16 15:28:49','updated_at' => '2022-04-16 15:28:49'),
         );
 
         DB::table('roles')->insert($roles);
