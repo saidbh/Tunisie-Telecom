@@ -232,18 +232,17 @@
             }else{
                 month = months;
             }
-            $('#realisation_date').attr("min",new Date().getFullYear()+'-'+ months +'-01');
+            $('#realisation_date').attr("min",new Date().getFullYear()+'-'+ months +'-01'+'T00:00:00');
             let day = "";
-            if(month / 2 == 0)
-            {
-                console.log(month);
-                day = "30";
-            }else
+            let pairmonths = [1,3,5,7,9,11]
+            if($.inArray(month, pairmonths) !== -1)
             {
                 day = "31";
+            }else
+            {
+                day = "30";
             }
-            console.log(day);
-            $('#realisation_date').attr("max",new Date().getFullYear()+'-'+ months + '-'+day);
+            $('#realisation_date').attr("max",new Date().getFullYear()+'-'+ months + '-'+day+'T00:00:00');
             $('#offre-type').selectpicker({
                 liveSearch:false,
                 noneResultsText:'Aucun résultat correspondant'
