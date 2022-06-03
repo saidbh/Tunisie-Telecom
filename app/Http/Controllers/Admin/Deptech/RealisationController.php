@@ -45,7 +45,7 @@ class RealisationController extends Controller
             'realisation_date'=> 'bail|required',
             'realisation'=>'bail|required',
             'last_realisation' => 'bail',
-            'objectifs' => 'bail|required'
+            'objectifs' => 'bail|required',
         ]);
 
         if ($validator->fails()) {

@@ -42,13 +42,19 @@
                                                               <input type="hidden" class="form-control" id="last_realisation" name="last_realisation" value="{{ $realisation->id  }}" required>
                                                               @endif
                                                               @endforeach
-                                                                <div class="row">
-                                                                  <div class="col-md-6">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
                                                                     <div class="form-group">
                                                                         <label for="realisation_date">Date</label>
-                                                                        <input type="date" class="form-control" id="realisation_date" name="realisation_date" min="" max="" required>
+                                                                        <input type="datetime-local" class="form-control" id="realisation_date" name="realisation_date" min="" max="" required>
                                                                     </div>
                                                                 </div>
+{{--                                                                 <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label for="realisation_date">Temp</label>
+                                                                        <input type="time" class="form-control" id="realisation_time" name="realisation_time" required>
+                                                                    </div>
+                                                                </div> --}}
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label for="realisation">Realisation</label>
