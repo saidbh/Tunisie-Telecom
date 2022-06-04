@@ -51,7 +51,7 @@
                                                                         <div class="form-group">
                                                                             <label for="objectif-type">Type objectifs</label>
                                                                             <select class="form-control" id="objectif-type" name="objectif_type" required>
-                                                                                <option></option>
+                                                                                <option value=" " selected>Pas de type</option>
                                                                                 @foreach($objectiftypes as $objectiftype)
                                                                                     <option value="{{ $objectiftype->id }}">{{ $objectiftype->name }}</option>
                                                                                 @endforeach
@@ -131,7 +131,7 @@
                                         <td>{{ $offres->id }}</td>
                                         <td>{{ $offres->OffreType->name }}</td>
                                         <td>{{ $offres->objectif_date }}</td>
-                                        <td>{{ $offres->ObjectifType->name }}</td>
+                                        <td>{{ $offres->ObjectifType?$offres->ObjectifType->name:'--' }}</td>
                                         <td>{{ $offres->objectifs }}</td>
                                         <td>
                                             <div class="flex align-items-center list-user-action">

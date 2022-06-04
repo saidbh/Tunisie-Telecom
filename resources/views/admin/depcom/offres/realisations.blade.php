@@ -39,14 +39,19 @@
                                                                     <input type="hidden" class="form-control" id="offresCom_id" name="offresCom_id" value="{{ $offre->CommercialOffre->id  }}" required>
                                                                     <input type="hidden" class="form-control" id="objectifs" name="objectifs" value="{{ $offre->objectifs  }}" required>
                                                                     <input type="hidden" class="form-control" id="type" name="type" value="{{ $offre->ObjectifType->name  }}" required>
+                                                                    @foreach($realisations as $realisation)
+                                                                    @if($loop->last)
+                                                                    <input type="hidden" class="form-control" id="last_realisation" name="last_realisation" value="{{ $realisation->id  }}" required>
+                                                                    @endif
+                                                                    @endforeach
                                                                     <div class="row">
-                                                                        <div class="col-md-3">
+                                                                        <div class="col-md-4">
                                                                             <div class="form-group">
-                                                                                <label for="realisation">Date</label>
-                                                                                <input type="datetime-local" class="form-control" id="date" name="date"  required>
+                                                                                <label for="realisation_date">Date</label>
+                                                                                <input type="datetime-local" class="form-control" id="realisation_date" name="date"  required>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-9">
+                                                                        <div class="col-md-8">
                                                                             <div class="form-group">
                                                                                 <label for="sub_offre">Listes des offres</label>
                                                                                 <select class="form-control" id="sub_offre" name="sub_offre[]" multiple aria-label="multiple select example" required>
@@ -61,7 +66,7 @@
                                                                     <div class="row">
                                                                         <div class="col-md-12">
                                                                             <div class="form-group">
-                                                                                <label for="realisation_date">Upload fichiers</label>
+                                                                                <label for="files">Upload fichiers</label>
                                                                                 @if ($offre->CommercialOffre->id == 8)
                                                                                 <input type="file" class="form-control" id="files" name="files[]" multiple required>
                                                                                  @else
@@ -104,7 +109,7 @@
                                             <td>{{ $realisation->id }}</td>
                                             <td>{{ $realisation->realisation_date }}</td>
                                             <td>{{ $realisation->realisation }}</td>
-                                            <td>{{ $realisation->realisation_rate }}</td>
+                                            <td>{{ $realisation->realisation_rate }} %</td>
                                             <td>{{ $realisation->rest_per_objectifs }}</td>
                                             <td>
                                                 <div class="flex align-items-center list-user-action">
@@ -161,9 +166,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @if($loop->last)
                                                     <span data-toggle="modal" data-target="#deleteoffres{{ $realisation->id }}">
                                                     <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
                                                   </span>
+                                                  @endif
                                                     <div class="modal fade" id="deleteoffres{{ $realisation->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
@@ -231,6 +238,24 @@
                     url: 'https://cdn.datatables.net/plug-ins/1.11.3/i18n/fr_fr.json'
                 }
             });
+            let month = {{ date("m",strtotime($offre->objectif_date)) }};
+            if(month<10)
+            {
+                months = '0'+month;
+            }else{
+                month = months;
+            }
+            $('#realisation_date').attr("min",new Date().getFullYear()+'-'+ months +'-01'+'T00:00:00');
+            let day = "";
+            let inpairmonths = [1,3,5,7,9,11]
+            if($.inArray(month, inpairmonths) !== -1)
+            {
+                day = "31";
+            }else
+            {
+                day = "30";
+            }
+            $('#realisation_date').attr("max",new Date().getFullYear()+'-'+ months + '-'+day+'T00:00:00');
             $('#sub_offre').selectpicker({
                 liveSearch:true,
                 noneResultsText:'Aucun résultat correspondant'

@@ -22,7 +22,7 @@ class OffresController extends Controller
     public function index()
     {
         $offres = OffreType::all();
-        $objectiftypes = ObjectifTypes::all();
+        $objectiftypes = ObjectifTypes::whereIn('id',[3,4])->get();
         $offrelist = offres::where('departements_id',1)->get();
         return view('admin.deptech.offres.index',compact('offres','objectiftypes','offrelist'));
     }
@@ -47,7 +47,6 @@ class OffresController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'offre_type'=> 'bail|required',
-            'objectif_type'=> 'bail|required',
             'objectif_date'=>'bail|required',
             'objectifs'=>'bail|required',
         ]);

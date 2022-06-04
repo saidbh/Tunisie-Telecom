@@ -17,7 +17,7 @@
                             <div class="iq-header-title w-100">
                                 <div class="row">
                                     <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
-                                        <h4 class="card-title m-0">Liste des realisations pour {{ $offre->OffreType->name  }} objectif ( {{ $offre->ObjectifType->name }} )</h4>
+                                        <h4 class="card-title m-0">Liste des realisations pour {{ $offre->OffreType->name  }} objectif ( {{ $offre->ObjectifType?$offre->ObjectifType->name:'Pas de type' }} )</h4>
                                         <div class="d-flex flex-row">
 {{--                                            <a href="#" class="btn mx-1 btn-success">PDF</a>--}}
 {{--                                            <a href="#" class="btn btn-success">Excel</a>--}}
@@ -234,8 +234,8 @@
             }
             $('#realisation_date').attr("min",new Date().getFullYear()+'-'+ months +'-01'+'T00:00:00');
             let day = "";
-            let pairmonths = [1,3,5,7,9,11]
-            if($.inArray(month, pairmonths) !== -1)
+            let inpairmonths = [1,3,5,7,9,11]
+            if($.inArray(month, inpairmonths) !== -1)
             {
                 day = "31";
             }else

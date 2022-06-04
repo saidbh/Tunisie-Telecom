@@ -92,7 +92,7 @@ class RealisationController extends Controller
                             $row = $s;
                         }
                     }
-                    $subOffres = SubOffreCommercial::where('offre_commercial_id',$request->offres_id)->get();
+                    $subOffres = SubOffreCommercial::where('offre_commercial_id',$request->offresCom_id)->get();
                     $TotalCell = 0;
                     $limit = 0;
                     $array = [];
@@ -105,21 +105,50 @@ class RealisationController extends Controller
                             {
                                 $TotalCell += $spreadsheet->getActiveSheet()->getCell($col.$row)->getValue();
                                 $row++;
-                                $limit++;
-                                $j++;  
+                                break; 
                             }
                             $row++;
                         }
                     } 
-                    $rate = $TotalCell / $request->objectifs * 100;
-                    $rest = $request->objectifs - $TotalCell;
+/*                     $rate = $TotalCell / $request->objectifs * 100;
+ *//*                     if($request->objectifs > $TotalCell)
+                    {
+                        $rest = $request->objectifs - $TotalCell;
+                    }else
+                    {
+                        $rest = 0;
+                    } */
                     $data = new DataOffres();
                     $data->offres_id = $request->offres_id;
                     $data->realisation_date = $request->date;
                     $data->realisation = $TotalCell;
-                    $data->realisation_rate = $rate;
-                    $data->rest_per_objectifs = $rest;
-                    $data->save();
+                    if($request->has('last_realisation'))
+                    {
+                        $lastvalue = DataOffres::where('id',$request->last_realisation)->first();
+                        $data->realisation_rate = $lastvalue->realisation_rate + intval($TotalCell / $request->objectifs * 100);
+                        if($lastvalue->rest_per_objectifs == 0 || $TotalCell>$lastvalue->rest_per_objectifs)
+                        {
+                            $data->rest_per_objectifs = 0;
+                        }else
+                        {
+                            $data->rest_per_objectifs = $lastvalue->rest_per_objectifs - $TotalCell;
+                        }
+                    }else
+                    {
+                        $data->realisation_rate = intval($TotalCell / $request->objectifs * 100);
+                        if($request->objectifs > $TotalCell)
+                        {
+                            $data->rest_per_objectifs = $request->objectifs - $TotalCell;
+                        }else
+                        {
+                            $data->rest_per_objectifs = 0;
+                        }
+                    }
+                    $data->save(); 
+
+/*                     $data->realisation_rate = $rate;
+                    $data->rest_per_objectifs = $rest; */
+
                     break;
                 case(6):
                         $TotalCell = $spreadsheet->getSheet(0)->getCell('C116')->getValue() + $spreadsheet->getSheet(0)->getCell('C118')->getValue();
