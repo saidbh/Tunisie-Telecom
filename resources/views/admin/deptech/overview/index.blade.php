@@ -34,7 +34,7 @@
                                             <select class="form-control" id="objectifs">
                                                 <option></option>
                                                 @foreach($offre as $off)
-                                                    <option value="{{ $off->id }}" data-subtext="">{{ $off->OffreType->name }} {{ $off->ObjectifType->name }} {{ $off->objectifs }} </option>
+                                                    <option value="{{ $off->id }}" data-subtext="">{{ $off->OffreType?$off->OffreType->name:'**' }} {{ $off->ObjectifType?$off->ObjectifType->name:'**' }} {{ $off->objectifs }} </option>
                                                 @endforeach
                                             </select>
                                         </div>
