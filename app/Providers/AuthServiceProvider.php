@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
             $currentRoute = SubCategories::where("link",Route::currentRouteName())->pluck("id")->first();
             $permission = Permissions::where(["roles_id"=>$userRole,"sub_categories_id"=>$currentRoute])->pluck("can_read")->first();
 
-            if(Route::currentRouteName() == 'academy-lessons.show'){
+            if(Route::currentRouteName() == 'technical-offres-list.edit'){
                 $currentRoute = SubCategories::where("link",explode('.',Route::currentRouteName())[0])->pluck("id")->first();
                 $permission = Permissions::where(["roles_id"=>$userRole,"sub_categories_id"=>$currentRoute])->pluck("can_read")->first();
                 return $permission;
@@ -48,8 +48,8 @@ class AuthServiceProvider extends ServiceProvider
             $userRole = $user->userRole->role->id;
             $currentRoute = SubCategories::where("link",Route::currentRouteName())->pluck("id")->first();
             $permission = Permissions::where(["roles_id"=>$userRole,"sub_categories_id"=>$currentRoute])->pluck("can_create")->first();
-
-            if(Route::currentRouteName() == 'academy-lessons.show'){
+            
+            if(Route::currentRouteName() == 'realisation-offres-list.show'){
                 $currentRoute = SubCategories::where("link",explode('.',Route::currentRouteName())[0])->pluck("id")->first();
                 $permission = Permissions::where(["roles_id"=>$userRole,"sub_categories_id"=>$currentRoute])->pluck("can_create")->first();
                 return $permission;
@@ -63,7 +63,7 @@ class AuthServiceProvider extends ServiceProvider
             $currentRoute = SubCategories::where("link",Route::currentRouteName())->pluck("id")->first();
             $permission = Permissions::where(["roles_id"=>$userRole,"sub_categories_id"=>$currentRoute])->pluck("can_update")->first();
             
-            if(Route::currentRouteName() == 'academy-lessons.show'){
+            if(Route::currentRouteName() == 'realisation-offres-list.show'){
                 $currentRoute = SubCategories::where("link",explode('.',Route::currentRouteName())[0])->pluck("id")->first();
                 $permission = Permissions::where(["roles_id"=>$userRole,"sub_categories_id"=>$currentRoute])->pluck("can_update")->first();
                 return $permission;
@@ -76,7 +76,7 @@ class AuthServiceProvider extends ServiceProvider
             $currentRoute = SubCategories::where("link",Route::currentRouteName())->pluck("id")->first();
             $permission = Permissions::where(["roles_id"=>$userRole,"sub_categories_id"=>$currentRoute])->pluck("can_delete")->first();
 
-            if(Route::currentRouteName() == 'academy-lessons.show'){
+            if(Route::currentRouteName() == 'realisation-offres-list.show'){
                 $currentRoute = SubCategories::where("link",explode('.',Route::currentRouteName())[0])->pluck("id")->first();
                 $permission = Permissions::where(["roles_id"=>$userRole,"sub_categories_id"=>$currentRoute])->pluck("can_delete")->first();
                 return $permission;

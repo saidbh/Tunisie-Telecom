@@ -181,42 +181,52 @@ class RealisationController extends Controller
                         $sheetData = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
                         try
                         {
-                            $c1 = $spreadsheet->getSheet(0)->getCell('F32')->getValue();
-                            $c2 = $spreadsheet->getSheet(0)->getCell('F34')->getValue();
-                            $c3 = $spreadsheet->getSheet(0)->getCell('F44')->getValue();
-                            $c4 = $spreadsheet->getSheet(0)->getCell('F46')->getValue();
-                            if(is_int($c1) && is_int($c2) && is_int($c3) && is_int($c4))
+                            if($request->type == 'NI+RA')
                             {
-                                $TotalCell1 = $c1 + $c2 + $c3 + $c4;
+                                $c1 = $spreadsheet->getSheet(0)->getCell('F32')->getValue();
+                                $c3 = $spreadsheet->getSheet(0)->getCell('F44')->getValue();
+                                $TotalCell1 += $c1 + $c3;
+                            }elseif($request->type == 'Migration')
+                            {
+                                $c2 = $spreadsheet->getSheet(0)->getCell('F34')->getValue();
+                                $c4 = $spreadsheet->getSheet(0)->getCell('F46')->getValue();
+                                $TotalCell1 += $c2 + $c4;
                             }
-
+                              
                         }catch(Exception $e)
                         {
                             //
+                            Session::flash('error', $e->getMessage(). $TotalCell1.'first file');
+                            return redirect()->back()->withInput();
                         }
                         try
                         {
-                            $b1 = $spreadsheet->getSheet(0)->getCell('C8')->getValue();
-                            $b2 = $spreadsheet->getSheet(0)->getCell('C10')->getValue();
-                            $b3 = $spreadsheet->getSheet(0)->getCell('C20')->getValue();
-                            $b4 = $spreadsheet->getSheet(0)->getCell('C22')->getValue();
-                            $b5 = $spreadsheet->getSheet(0)->getCell('C80')->getValue();
-                            $b6 = $spreadsheet->getSheet(0)->getCell('C82')->getValue();
-                            $b7 = $spreadsheet->getSheet(0)->getCell('C92')->getValue();
-                            $b8 = $spreadsheet->getSheet(0)->getCell('C94')->getValue();
-                            $b9 = $spreadsheet->getSheet(0)->getCell('C104')->getValue();
-                            $b10 = $spreadsheet->getSheet(0)->getCell('C106')->getValue();
-                            if(is_int($b1) && is_int($b2) && is_int($b3) && is_int($b4) && is_int($b5) && is_int($b6) && is_int($b7) && is_int($b8) && is_int($b9) && is_int($b10))
+                            if($request->type == 'NI+RA')
                             {
-                                $TotalCell2 = $b1 + $b2 + $b3 + $b4 + $b5 + $b6 + $b7 + $b8 + $b9 + $b10;
+                                $b1 = $spreadsheet->getSheet(0)->getCell('C8')->getValue();
+                                $b3 = $spreadsheet->getSheet(0)->getCell('C20')->getValue();
+                                $b5 = $spreadsheet->getSheet(0)->getCell('C80')->getValue();
+                                $b7 = $spreadsheet->getSheet(0)->getCell('C92')->getValue();
+                                $b9 = $spreadsheet->getSheet(0)->getCell('C104')->getValue();
+                                $TotalCell2 += $b1 + $b3 + $b5 + $b7 + $b9;
+                            }elseif($request->type == 'Migration')
+                            {
+                                $b2 = $spreadsheet->getSheet(0)->getCell('C10')->getValue();
+                                $b4 = $spreadsheet->getSheet(0)->getCell('C22')->getValue();
+                                $b6 = $spreadsheet->getSheet(0)->getCell('C82')->getValue();
+                                $b8 = $spreadsheet->getSheet(0)->getCell('C94')->getValue();
+                                $b10 = $spreadsheet->getSheet(0)->getCell('C106')->getValue();
+                                $TotalCell2 +=  $b2 + $b4 + $b6 + $b8 + $b10;
                             }
-
+                            
                         }catch(Exception $e)
                         {
                             //
+                            Session::flash('error', $e->getMessage(). $TotalCell1.'second file');
+                            return redirect()->back()->withInput();
                         }
                     }
-                    if($TotalCell1 && $TotalCell2)
+                    if($TotalCell1 !=null || $TotalCell2 != null)
                     {
                         $TotalCell = $TotalCell1 + $TotalCell2;
                         $rate = $TotalCell / $request->objectifs * 100;
@@ -228,6 +238,8 @@ class RealisationController extends Controller
                         $data->realisation_rate = $rate;
                         $data->rest_per_objectifs = $rest;
                         $data->save();
+                        Session::flash('success', 'Fichiers traité avec succeé');
+                        return redirect()->back()->withInput();
                     }else
                     {
                         Session::flash('error','Erreur fichiers !');

@@ -21,9 +21,9 @@
                                         <div class="d-flex flex-row">
                                             {{--                                            <a href="#" class="btn mx-1 btn-success">PDF</a>--}}
                                             {{--                                            <a href="#" class="btn btn-success">Excel</a>--}}
-                                            @can('create')
+                                           {{--  @can('create') --}}
                                             <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#offres-managment">Upload fichies</a>
-                                            @endcan
+                                            {{-- @endcan --}}
                                             <div class="modal fade" id="offres-managment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
@@ -169,11 +169,11 @@
                                                         </div>
                                                     </div>
                                                     @if($loop->last)
-                                                    @can('delete')
+                                                    {{-- @can('delete') --}}
                                                     <span data-toggle="modal" data-target="#deleteoffres{{ $realisation->id }}">
                                                         <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
                                                       </span>
-                                                    @endcan
+                                                    {{-- @endcan --}}
                                                   @endif
                                                     <div class="modal fade" id="deleteoffres{{ $realisation->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">

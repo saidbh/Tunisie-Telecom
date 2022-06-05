@@ -6,6 +6,7 @@ use App\Models\ObjectifTypes;
 use App\Models\OffreCommercial;
 use App\Models\offres;
 use App\Models\OffreType;
+use App\Models\DataOffres;
 use Illuminate\Database\QueryException;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
@@ -151,6 +152,13 @@ class OffresController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            offres::where('id',$id)->delete();
+        } catch (QueryException $e) {
+            Session::flash('error', $e->getMessage());
+            return redirect()->back()->withInput();
+        }
+        Session::flash('success', 'Offre supprimer avec succés');
+        return redirect()->back()->withInput();
     }
 }
