@@ -23,7 +23,9 @@
                                                 @csrf
                                                 @method('post')
                                                 <input type="hidden" name="reportExcel" id="reportExcel" value="">
-                                                <button type="button"  class="btn btn-success" id="submitExcel">Download rapport</button>
+                                                @can('create')
+                                                <button type="button"  class="btn btn-success" id="submitExcel">Download rapport</button>                                                    
+                                                @endcan
                                             </form>
                                         </div>
                                     </div>
@@ -89,7 +91,7 @@
                                             <td>{{ $list->departement->name }}</td>
                                             <td>{{ $list->OffreType?$list->OffreType->name:$list->CommercialOffre->name }}</td>
                                             <td>{{ $list->objectif_date }}</td>
-                                            <td>{{ $list->ObjectifType->name }}</td>
+                                            <td>{{ $list->ObjectifType?$list->ObjectifType->name:'**' }}</td>
                                             <td>{{ $list->objectifs }}</td>
                                             </tr>
                                             @endforeach

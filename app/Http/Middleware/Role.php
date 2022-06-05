@@ -21,14 +21,10 @@ class Role
         if (!Auth::check())
         {
             return redirect()->route('login');
-        }
-        if (\auth()->user()->userRole->id == 3 && $role == 'user')
+        }else
         {
             return $next($request);
-        }elseif(\auth()->user()->userRole->id != 3 && $role == 'admin')
-            {
-                return $next($request);
-            }
+        }
         abort(404);
     }
 }

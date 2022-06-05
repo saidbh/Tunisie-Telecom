@@ -22,7 +22,9 @@
                                         <div class="d-flex flex-row">
 {{--                                            <a href="#" class="btn mx-1 btn-success">PDF</a>--}}
 {{--                                            <a href="#" class="btn btn-success">Excel</a>--}}
-                                            <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#offres-managment">Ajouter</a>
+                                                    @can('create')
+                                                    <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#offres-managment">Ajouter</a>
+                                                    @endcan
                                             <div class="modal fade" id="offres-managment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
@@ -177,10 +179,12 @@
                                                             </div>
                                                         </div>
                                                         </div>
-                                                    </div> 
-                                                  <span data-toggle="modal" data-target="#deleteoffres{{ $fix->id }}">
-                                                    <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
-                                                  </span> 
+                                                    </div>
+                                                    @can('delete')
+                                                    <span data-toggle="modal" data-target="#deleteoffres{{ $fix->id }}">
+                                                        <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
+                                                      </span> 
+                                                    @endcan 
                                                 <div class="modal fade" id="deleteoffres{{ $fix->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">

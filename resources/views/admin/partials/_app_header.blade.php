@@ -12,16 +12,8 @@
     <div class="navbar-breadcrumb">
       <h5 class="mb-0">
         Dashboard
-{{--        @if(Session::has('user_type')) <sup class="text-danger">{{Session::get('user_type')}}</sup> @endif--}}
-{{--        @if(Session::has('user_agency_name')) <sup class="text-success">{{Session::get('user_agency_name')}}</sup> @endif--}}
-{{--        @if(Session::has('user_department_name')) <sup class="text-primary">{{Session::get('user_department_name')}}</sup> @endif--}}
+        @if(Session::has('user_type')) <sup class="text-danger">{{Session::get('user_type')}}</sup> @endif
       </h5>
-      {{-- <nav aria-label="breadcrumb">
-        <ul class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Home</li>
-        </ul>
-      </nav> --}}
     </div>
     <nav class="navbar navbar-expand-lg navbar-light p-0">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

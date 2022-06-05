@@ -110,14 +110,6 @@ class RealisationController extends Controller
                             $row++;
                         }
                     } 
-/*                     $rate = $TotalCell / $request->objectifs * 100;
- *//*                     if($request->objectifs > $TotalCell)
-                    {
-                        $rest = $request->objectifs - $TotalCell;
-                    }else
-                    {
-                        $rest = 0;
-                    } */
                     $data = new DataOffres();
                     $data->offres_id = $request->offres_id;
                     $data->realisation_date = $request->date;
@@ -145,10 +137,6 @@ class RealisationController extends Controller
                         }
                     }
                     $data->save(); 
-
-/*                     $data->realisation_rate = $rate;
-                    $data->rest_per_objectifs = $rest; */
-
                     break;
                 case(6):
                         $TotalCell = $spreadsheet->getSheet(0)->getCell('C116')->getValue() + $spreadsheet->getSheet(0)->getCell('C118')->getValue();

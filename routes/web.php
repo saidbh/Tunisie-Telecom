@@ -104,7 +104,6 @@ Route::group(['middleware'=>['auth:web','routes', 'Role:admin'],'except'=>'logou
     });
 
     Route::group(['prefix'=>'offres-list','name'=>'offres-list'],function(){
-
         Route::resource('deptech-offres', Admin\Deptech\OffresController::class)->names([
             'index' => 'technical-offres-list',
             'create' => 'technical-offres-list.create',

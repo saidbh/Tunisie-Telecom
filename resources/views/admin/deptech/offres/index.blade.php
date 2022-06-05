@@ -21,7 +21,9 @@
                                         <div class="d-flex flex-row">
 {{--                                            <a href="#" class="btn mx-1 btn-success">PDF</a>--}}
 {{--                                            <a href="#" class="btn btn-success">Excel</a>--}}
+                                            @can('create')
                                             <a href="#" class="btn ml-1 btn-success" data-toggle="modal" data-target="#offres-managment">Ajouter</a>
+                                            @endcan
                                             <div class="modal fade" id="offres-managment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                                 <div class="modal-dialog modal-xl" role="document">
                                                     <div class="modal-content">
@@ -135,15 +137,21 @@
                                         <td>{{ $offres->objectifs }}</td>
                                         <td>
                                             <div class="flex align-items-center list-user-action">
+                                                @can('create')
                                                 <span data-toggle="modal" data-target="#">
                                                     <a data-toggle="tooltip" data-placement="top" title="Ajouter realisation" href="{{ route('realisation-offres-list.show',$offres->id) }}"><i class="ri-bar-chart-grouped-line"></i></a>
                                                   </span>
-                                                  <span data-toggle="modal" data-target="#editoffres">
+                                                @endcan
+                                                @can('update')
+                                                <span data-toggle="modal" data-target="#editoffres">
                                                     <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{ route('technical-offres-list.edit',$offres->id) }}"><i class="ri-pencil-line"></i></a>
                                                   </span>
-                                                  <span data-toggle="modal" data-target="#deleteoffres{{$offres->id}}">
+                                                @endcan
+                                                @can('delete')
+                                                <span data-toggle="modal" data-target="#deleteoffres{{$offres->id}}">
                                                     <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
                                                   </span> 
+                                                @endcan
                                                 <div class="modal fade" id="deleteoffres{{$offres->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">

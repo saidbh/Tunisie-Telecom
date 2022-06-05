@@ -128,155 +128,155 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script>
-        var options = {
-          series: [{
-          name: 'Département Technique',
-          data: [{{$techObjectifs}},{{$techrealisation}} ,{{$techrate}} ,{{$techrest}}]
-        }],
-          annotations: {
-          points: [{
-            x: 'Bananas',
-            seriesIndex: 0,
-            label: {
-              borderColor: '#775DD0',
-              offsetY: 0,
-              style: {
-                color: '#fff',
-                background: '#775DD0',
-              },
-              text: 'Département Technique',
-            }
-          }]
-        },
-        chart: {
-          height: 250,
-          type: 'bar',
-        },
-        plotOptions: {
-          bar: {
-            borderRadius: 10,
-            columnWidth: '50%',
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          width: 2
-        },
-        
-        grid: {
-          row: {
-            colors: ['#fff', '#f2f2f2']
-          }
-        },
-        xaxis: {
-          labels: {
-            rotate: -45
-          },
-          categories: ["Total objectifs", "Total réalisation","Total taux realisations","Total reste par objectifs"],
-          tickPlacement: 'on'
-        },
-        yaxis: {
-          title: {
-            text: 'Département Technique',
-          },
-        },
-        fill: {
-          type: 'gradient',
-          gradient: {
-            shade: 'light',
-            type: "horizontal",
-            shadeIntensity: 0.25,
-            gradientToColors: undefined,
-            inverseColors: true,
-            opacityFrom: 0.85,
-            opacityTo: 0.85,
-            stops: [50, 0, 100]
-          },
-        }
-        };
-        var chart = new ApexCharts(document.querySelector('#technicals'),
-            options
-        );
-        chart.render();
-    </script>
-    <script>
-        var options1 = {
-          series: [{
-          name: 'Département commerciale',
-          data: [{{$comObjectifs}},{{$comrealisation}} ,{{$comrate}} ,{{$comrest}}]
-        }],
-          annotations: {
-          points: [{
-            x: 'Département commerciale',
-            seriesIndex: 0,
-            label: {
-              borderColor: '#775DD0',
-              offsetY: 0,
-              style: {
-                color: '#fff',
-                background: '#775DD0',
-              },
-              text: 'Département commerciale',
-            }
-          }]
-        },
-        chart: {
-          height: 250,
-          type: 'bar',
-        },
-        plotOptions: {
-          bar: {
-            borderRadius: 10,
-            columnWidth: '50%',
-          }
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          width: 2
-        },
-        
-        grid: {
-          row: {
-            colors: ['#fff', '#f2f2f2']
-          }
-        },
-        xaxis: {
-          labels: {
-            rotate: -45
-          },
-          categories: ["Total objectifs", "Total réalisation","Total taux realisations","Total reste par objectifs"],
-          tickPlacement: 'on'
-        },
-        yaxis: {
-          title: {
-            text: 'Département commerciale',
-          },
-        },
-        fill: {
-          type: 'gradient',
-          gradient: {
-            shade: 'light',
-            type: "horizontal",
-            shadeIntensity: 0.25,
-            gradientToColors: undefined,
-            inverseColors: true,
-            opacityFrom: 0.85,
-            opacityTo: 0.85,
-            stops: [50, 0, 100]
-          },
-        }
-        };
-        var chart1 = new ApexCharts(document.querySelector('#commercial123'),
-            options1
-        );
-        chart1.render();
-    </script>
+                                                        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+                                                        <script>
+                                                            var options = {
+                                                            series: [{
+                                                            name: 'Département Technique',
+                                                            data: [{{$techObjectifs}},{{$techrealisation}} ,{{$techrate}} ,{{$techrest}}]
+                                                            }],
+                                                            annotations: {
+                                                            points: [{
+                                                                x: 'Bananas',
+                                                                seriesIndex: 0,
+                                                                label: {
+                                                                borderColor: '#775DD0',
+                                                                offsetY: 0,
+                                                                style: {
+                                                                    color: '#fff',
+                                                                    background: '#775DD0',
+                                                                },
+                                                                text: 'Département Technique',
+                                                                }
+                                                            }]
+                                                            },
+                                                            chart: {
+                                                            height: 250,
+                                                            type: 'bar',
+                                                            },
+                                                            plotOptions: {
+                                                            bar: {
+                                                                borderRadius: 10,
+                                                                columnWidth: '50%',
+                                                            }
+                                                            },
+                                                            dataLabels: {
+                                                            enabled: false
+                                                            },
+                                                            stroke: {
+                                                            width: 2
+                                                            },
+                                                            
+                                                            grid: {
+                                                            row: {
+                                                                colors: ['#fff', '#f2f2f2']
+                                                            }
+                                                            },
+                                                            xaxis: {
+                                                            labels: {
+                                                                rotate: -45
+                                                            },
+                                                            categories: ["Total objectifs", "Total réalisation","Total taux realisations","Total reste par objectifs"],
+                                                            tickPlacement: 'on'
+                                                            },
+                                                            yaxis: {
+                                                            title: {
+                                                                text: 'Département Technique',
+                                                            },
+                                                            },
+                                                            fill: {
+                                                            type: 'gradient',
+                                                            gradient: {
+                                                                shade: 'light',
+                                                                type: "horizontal",
+                                                                shadeIntensity: 0.25,
+                                                                gradientToColors: undefined,
+                                                                inverseColors: true,
+                                                                opacityFrom: 0.85,
+                                                                opacityTo: 0.85,
+                                                                stops: [50, 0, 100]
+                                                            },
+                                                            }
+                                                            };
+                                                            var chart = new ApexCharts(document.querySelector('#technicals'),
+                                                                options
+                                                            );
+                                                            chart.render();
+                                                        </script>
+                                                        <script>
+                                                            var options1 = {
+                                                            series: [{
+                                                            name: 'Département commerciale',
+                                                            data: [{{$comObjectifs}},{{$comrealisation}} ,{{$comrate}} ,{{$comrest}}]
+                                                            }],
+                                                            annotations: {
+                                                            points: [{
+                                                                x: 'Département commerciale',
+                                                                seriesIndex: 0,
+                                                                label: {
+                                                                borderColor: '#775DD0',
+                                                                offsetY: 0,
+                                                                style: {
+                                                                    color: '#fff',
+                                                                    background: '#775DD0',
+                                                                },
+                                                                text: 'Département commerciale',
+                                                                }
+                                                            }]
+                                                            },
+                                                            chart: {
+                                                            height: 250,
+                                                            type: 'bar',
+                                                            },
+                                                            plotOptions: {
+                                                            bar: {
+                                                                borderRadius: 10,
+                                                                columnWidth: '50%',
+                                                            }
+                                                            },
+                                                            dataLabels: {
+                                                            enabled: false
+                                                            },
+                                                            stroke: {
+                                                            width: 2
+                                                            },
+                                                            
+                                                            grid: {
+                                                            row: {
+                                                                colors: ['#fff', '#f2f2f2']
+                                                            }
+                                                            },
+                                                            xaxis: {
+                                                            labels: {
+                                                                rotate: -45
+                                                            },
+                                                            categories: ["Total objectifs", "Total réalisation","Total taux realisations","Total reste par objectifs"],
+                                                            tickPlacement: 'on'
+                                                            },
+                                                            yaxis: {
+                                                            title: {
+                                                                text: 'Département commerciale',
+                                                            },
+                                                            },
+                                                            fill: {
+                                                            type: 'gradient',
+                                                            gradient: {
+                                                                shade: 'light',
+                                                                type: "horizontal",
+                                                                shadeIntensity: 0.25,
+                                                                gradientToColors: undefined,
+                                                                inverseColors: true,
+                                                                opacityFrom: 0.85,
+                                                                opacityTo: 0.85,
+                                                                stops: [50, 0, 100]
+                                                            },
+                                                            }
+                                                            };
+                                                            var chart1 = new ApexCharts(document.querySelector('#commercial123'),
+                                                                options1
+                                                            );
+                                                            chart1.render();
+                                                        </script>
                                                             <script>
                                                                 var options = {
                                                                     "chart": {
@@ -339,67 +339,66 @@
                                                                 var chart = new ApexCharts(document.querySelector("#statADSL2"), options);
                                                                 chart.render();
                                                             </script>
+                                                            <script>
+                                                            var options = {
+                                                                "chart": {
+                                                                    "height": 250,
+                                                                    "type": "pie",
+                                                                    "toolbar": {
+                                                                        "show": true,
+                                                                        "tools": {
+                                                                            "download": true,
+                                                                            "selection": false,
+                                                                            "zoom": false,
+                                                                            "zoomin": false,
+                                                                            "zoomout": false,
+                                                                            "pan": false,
+                                                                            "reset": false
+                                                                        },
+                                                                        "autoSelected": "zoom"
+                                                                    },
+                                                                    events: {
+                                                                        dataPointSelection: function (event, chartContext, config) {
+                                                                            console.log(config.dataPointIndex + " " + config.seriesIndex);
+                                                                        },
+                                                                        click: function (event, chartContext, config) {
+                                                                            console.log(config.dataPointIndex + " " + config.seriesIndex);
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "series": [ {{$fixesSuccession_rate}}, {{$fixesSuccession_rate_24h}}, {{$fixesSuccession_rate_48h}}, {{$fixesSuccession_rate_72h}}, {{$fixesH48_drg_speed}}],
+                                                                "labels": ["Taux de relève", "Taux de relève en 24H","Taux relève en 48H","Taux de relève en 72H","Vitesse DRG 48H sans vol de cable"]
+                                                            }
+                                                            var chart = new ApexCharts(document.querySelector("#statfixes1"),
+                                                                options
+                                                            );
+                                                            chart.render();
+                                                            </script>
+                                                            <script>
 
-<script>
-var options = {
-    "chart": {
-        "height": 250,
-        "type": "pie",
-        "toolbar": {
-            "show": true,
-            "tools": {
-                "download": true,
-                "selection": false,
-                "zoom": false,
-                "zoomin": false,
-                "zoomout": false,
-                "pan": false,
-                "reset": false
-            },
-            "autoSelected": "zoom"
-        },
-        events: {
-            dataPointSelection: function (event, chartContext, config) {
-                console.log(config.dataPointIndex + " " + config.seriesIndex);
-            },
-            click: function (event, chartContext, config) {
-                console.log(config.dataPointIndex + " " + config.seriesIndex);
-            }
-        }
-    },
-    "series": [ {{$fixesSuccession_rate}}, {{$fixesSuccession_rate_24h}}, {{$fixesSuccession_rate_48h}}, {{$fixesSuccession_rate_72h}}, {{$fixesH48_drg_speed}}],
-    "labels": ["Taux de relève", "Taux de relève en 24H","Taux relève en 48H","Taux de relève en 72H","Vitesse DRG 48H sans vol de cable"]
-}
-var chart = new ApexCharts(document.querySelector("#statfixes1"),
-    options
-);
-chart.render();
-</script>
-<script>
+                                                            var options = {
+                                                            series: [{
+                                                            data: [{{$fixesdgt_raise}}, {{$fixesdgt_raised_actual}},]
+                                                            }],
+                                                            chart: {
+                                                            type: 'bar',
+                                                            height: 150
+                                                            },
+                                                            plotOptions: {
+                                                            bar: {
+                                                                borderRadius: 4,
+                                                                horizontal: true,
+                                                            }
+                                                            },
+                                                            dataLabels: {
+                                                            enabled: false
+                                                            },
+                                                            xaxis: {
+                                                            categories: ['DGT à relever','DGT à relever réels',],
+                                                            }
+                                                            };
 
-var options = {
-series: [{
-data: [{{$fixesdgt_raise}}, {{$fixesdgt_raised_actual}},]
-}],
-chart: {
-type: 'bar',
-height: 150
-},
-plotOptions: {
-bar: {
-    borderRadius: 4,
-    horizontal: true,
-}
-},
-dataLabels: {
-enabled: false
-},
-xaxis: {
-categories: ['DGT à relever','DGT à relever réels',],
-}
-};
-
-var chart = new ApexCharts(document.querySelector("#statfixes2"), options);
-chart.render();
-</script>
+                                                            var chart = new ApexCharts(document.querySelector("#statfixes2"), options);
+                                                            chart.render();
+                                                            </script>
 @endsection

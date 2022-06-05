@@ -18,7 +18,9 @@
                                     <div class="row">
                                         <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
                                             <h4 class="card-title m-0">Liste des rôles</h4>
-                                                <a href="{{route('system-role-permission.create')}}" class="btn btn-success"><i class="ri-add-line"></i> Ajouter</a>
+                                            @can('create')
+                                            <a href="{{route('system-role-permission.create')}}" class="btn btn-success"><i class="ri-add-line"></i> Ajouter</a>
+                                            @endcan
                                         </div>
                                     </div>
                                 </div>
@@ -46,10 +48,14 @@
                                                 <td>{{$value['updated_at']}}</td>
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
-                                                            <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{route('system-role-permission.edit',[$value->id])}}"><i class="ri-pencil-line"></i></a>
-                                                            <span data-toggle="modal" data-target="#role{{$value['id']}}">
-                          <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
-                        </span>
+                                                        @can('update')
+                                                        <a data-toggle="tooltip" data-placement="top" title="Modifier" href="{{route('system-role-permission.edit',[$value->id])}}"><i class="ri-pencil-line"></i></a>
+                                                        @endcan
+                                                        @can('delete')
+                                                        <span data-toggle="modal" data-target="#role{{$value['id']}}">
+                                                            <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
+                                                            </span>
+                                                        @endcan
                                                             <div class="modal fade" id="role{{$value['id']}}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <form method="POST" action="{{route('system-role-permission.destroy',[$value->id])}}">

@@ -19,7 +19,9 @@
                                     <div class="col-md-12 d-flex flex-row align-items-center justify-content-between">
                                         <h4 class="card-title m-0">Liste des utilisateurs</h4>
                                         <div class="d-flex flex-row">
+                                            @can('create')
                                             <a href="#" class="btn mx-1 btn-success" data-toggle="modal" data-target="#adduser">Ajouter</a>
+                                            @endcan
                                             <div class="modal fade" id="adduser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
                                                     <div class="modal-content">
@@ -154,9 +156,11 @@
                                         <td class="text-center">{{ $user->zip_code }}</td>
                                         <td>
                                             <div class="flex align-items-center list-user-action">
+                                                @can('update')
                                                 <span data-toggle="modal" data-target="#edit{{$user->id}}">
-                                                <a data-toggle="tooltip" data-placement="top" title="Modifier" href="#"><i class="ri-pencil-line"></i></a>
-                                                </span>
+                                                    <a data-toggle="tooltip" data-placement="top" title="Modifier" href="#"><i class="ri-pencil-line"></i></a>
+                                                    </span>
+                                                @endcan
                                                 <div class="modal fade" id="edit{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content">
@@ -252,9 +256,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @can('delete')
                                                 <span data-toggle="modal" data-target="#delete{{$user->id}}">
                                                     <a data-toggle="tooltip" data-placement="top" title="Supprimer" href="#"><i class="ri-delete-bin-line"></i></a>
                                                   </span>
+                                                @endcan
                                                     <div class="modal fade" id="delete{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog" role="document">
                                                             <form method="post" action="{{ route('users-accounts.destroy',[$user->id]) }}">
