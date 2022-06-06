@@ -69,7 +69,7 @@
                                                                     <div class="col-md-3">
                                                                         <div class="form-group">
                                                                             <label for="objectifs">Objectifs</label>
-                                                                            <input type="text" class="form-control" id="objectifs" name="objectifs" required>
+                                                                            <input type="number" class="form-control" id="objectifs" name="objectifs" required>
                                                                         </div>
                                                                     </div>
 {{--                                                                     <div class="col-md-3">
