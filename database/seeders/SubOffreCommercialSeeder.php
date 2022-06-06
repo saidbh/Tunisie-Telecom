@@ -20,7 +20,7 @@ class SubOffreCommercialSeeder extends Seeder
             array('id' => '2','offre_commercial_id' => '1','name' => 'Corporate Optimum Plus','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '3','offre_commercial_id' => '1','name' => 'Forfait SELECT','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '4','offre_commercial_id' => '1','name' => 'Oh!Méga','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '5','offre_commercial_id' => '1','name' => 'Dima@connect Hyb','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '5','offre_commercial_id' => '1','name' => 'Dima@Connect Hyb','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '6','offre_commercial_id' => '1','name' => 'OPTICA','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '7','offre_commercial_id' => '1','name' => 'Sigounda postpayé','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
 
