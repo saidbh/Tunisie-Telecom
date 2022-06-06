@@ -53,7 +53,7 @@
                                                                         <div class="form-group">
                                                                             <label for="objectif-type">Type objectifs</label>
                                                                             <select class="form-control" id="objectif-type" name="objectif_type" required>
-                                                                                <option value=" " selected>Pas de type</option>
+                                                                                <option value="**" selected>Pas de type</option>
                                                                                 @foreach($objectiftypes as $objectiftype)
                                                                                     <option value="{{ $objectiftype->id }}">{{ $objectiftype->name }}</option>
                                                                                 @endforeach
