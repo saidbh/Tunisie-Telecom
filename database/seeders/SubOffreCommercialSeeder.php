@@ -27,7 +27,7 @@ class SubOffreCommercialSeeder extends Seeder
             array('id' => '8','offre_commercial_id' => '2','name' => 'Hayya','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '9','offre_commercial_id' => '2','name' => 'PRE - Jawhara 35Mil','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '10','offre_commercial_id' => '2','name' => 'PRE - ESS Mobile 35mil/min','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '11','offre_commercial_id' => '2','name' => 'PRE - Pack cle 4G+','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '11','offre_commercial_id' => '2','name' => 'PRE - Pack cle 4G','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '12','offre_commercial_id' => '2','name' => 'PRE - Pass Etudiant','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '13','offre_commercial_id' => '2','name' => 'PRE - Po9','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '14','offre_commercial_id' => '2','name' => 'PRE - TM 35mil/min','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
@@ -40,7 +40,7 @@ class SubOffreCommercialSeeder extends Seeder
             array('id' => '20','offre_commercial_id' => '3','name' => 'Dimanet Optica','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '21','offre_commercial_id' => '3','name' => 'Nouvelle Offre Dimanet 4G','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '22','offre_commercial_id' => '3','name' => 'Pack clé prépayé','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '23','offre_commercial_id' => '3','name' => 'Pre-pack cle 4G','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '23','offre_commercial_id' => '3','name' => 'PRE-pack cle 4G','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
 
             array('id' => '24','offre_commercial_id' => '4','name' => 'Netbox 4G DataOnly','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '25','offre_commercial_id' => '4','name' => 'Netbox prepayee','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
