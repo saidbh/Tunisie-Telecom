@@ -57,7 +57,7 @@ class ReportController extends Controller
             $listOffresCom = offres::whereIn('id',$data)->where('departements_id',2)->get();
             foreach($listOffresCom as $com)
             {
-                array_push($ComArray,$com->CommercialOffre->name);
+                array_push($ComArray,$com->CommercialOffre?$com->CommercialOffre->name:'**');
             }
             $listOffrestech = offres::whereIn('id',$data)->where('departements_id',1)->get();
             foreach($listOffrestech as $com)
@@ -80,7 +80,7 @@ class ReportController extends Controller
                     $rest = array();
                     foreach($offre as $off)
                     {
-                        array_push($objectiftype,$off->ObjectifType->name);
+                        array_push($objectiftype,$off->ObjectifType?$off->ObjectifType->name:'**');
                         array_push($objective,$off->objectifs);
                         array_push($realisation,$off->DataOffre?$off->DataOffre->realisation:0);
                         array_push($rate,$off->DataOffre?$off->DataOffre->realisation_rate:0);
@@ -110,7 +110,7 @@ class ReportController extends Controller
                     $rest = array();
                     foreach($offre as $off)
                     {
-                        array_push($objectiftype,$off->ObjectifType->name);
+                        array_push($objectiftype,$off->ObjectifType?$off->ObjectifType->name:'**');
                         array_push($objective,$off->objectifs);
                         array_push($realisation,$off->DataOffre?$off->DataOffre->realisation:0);
                         array_push($rate,$off->DataOffre?$off->DataOffre->realisation_rate:0);
@@ -149,7 +149,7 @@ class ReportController extends Controller
                     $rest = array();
                     foreach($offre as $off)
                     {
-                        array_push($objectiftype,$off->ObjectifType->name);
+                        array_push($objectiftype,$off->ObjectifType?$off->ObjectifType->name:'**');
                         array_push($objective,$off->objectifs);
                         array_push($realisation,$off->DataOffre?$off->DataOffre->realisation:0);
                         array_push($rate,$off->DataOffre?$off->DataOffre->realisation_rate:0);
@@ -179,7 +179,7 @@ class ReportController extends Controller
                     $rest = array();
                     foreach($offre as $off)
                     {
-                        array_push($objectiftype,$off->ObjectifType->name);
+                        array_push($objectiftype,$off->ObjectifType?$off->ObjectifType->name:'**');
                         array_push($objective,$off->objectifs);
                         array_push($realisation,$off->DataOffre?$off->DataOffre->realisation:0);
                         array_push($rate,$off->DataOffre?$off->DataOffre->realisation_rate:0);
