@@ -20,7 +20,7 @@ class SubOffreCommercialSeeder extends Seeder
             array('id' => '2','offre_commercial_id' => '1','name' => 'Corporate Optimum Plus','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '3','offre_commercial_id' => '1','name' => 'Forfait SELECT','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '4','offre_commercial_id' => '1','name' => 'Oh!Méga','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '5','offre_commercial_id' => '1','name' => 'Dima@connect hyb','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '5','offre_commercial_id' => '1','name' => 'Dima@connect Hyb','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '6','offre_commercial_id' => '1','name' => 'OPTICA','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '7','offre_commercial_id' => '1','name' => 'Sigounda postpayé','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
 
@@ -83,10 +83,9 @@ class SubOffreCommercialSeeder extends Seeder
             array('id' => '57','offre_commercial_id' => '9','name' => 'PRE - TT 300%','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '58','offre_commercial_id' => '9','name' => 'Hayya','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
 
-            array('id' => '59','offre_commercial_id' => '10','name' => 'Dim@Connect Hyb','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '60','offre_commercial_id' => '10','name' => 'Forfait SELECT','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '61','offre_commercial_id' => '10','name' => 'OPTICA','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '62','offre_commercial_id' => '10','name' => 'Privilège','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '59','offre_commercial_id' => '10','name' => 'Forfait SELECT','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '60','offre_commercial_id' => '10','name' => 'OPTICA','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '61','offre_commercial_id' => '10','name' => 'Privilège','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
         );
         DB::table('sub_commercial_offre')->insert($suboffre_commercial);
     }

@@ -99,6 +99,7 @@ class RealisationController extends Controller
                     
                     foreach($request->sub_offre as $sub)
                     {
+                        array_push($array,$sub);
                         for($j=0;$j<=200;$j++)
                         {
                             if($sub == $spreadsheet->getActiveSheet()->getCell('C'.$row)->getValue())
@@ -110,6 +111,7 @@ class RealisationController extends Controller
                             $row++;
                         }
                     } 
+                    return $array;
                     $data = new DataOffres();
                     $data->offres_id = $request->offres_id;
                     $data->realisation_date = $request->date;
