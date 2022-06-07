@@ -97,24 +97,26 @@ class RealisationController extends Controller
                     $limit = 0;
                     $array = [];
                     $limit = 1;
+                    $offres = array();
                     foreach($request->sub_offre as $sub)
                     {
-                        for($j=0;$j<=200;$j++)
-                        {   
-                            if($sub == $spreadsheet->getActiveSheet()->getCell('C'.$row)->getValue())
-                            {
-                                array_push($array,$limit);
-                                $TotalCell += $spreadsheet->getActiveSheet()->getCell($col.$row)->getValue();
-                                $row++;
-                                $limit++;
-                                if(count($request->sub_offre)<=$limit)
-                                {
-                                    break;
-                                } 
-                            }
+                        array_push($offres,$sub);
+                    }
+                    for($j=0;$j<=200;$j++)
+                    {   
+                        if(in_array($spreadsheet->getActiveSheet()->getCell('C'.$row)->getValue(), $offres))
+                        {
+                            array_push($array,$spreadsheet->getActiveSheet()->getCell($col.$row)->getValue());
+                            $TotalCell += $spreadsheet->getActiveSheet()->getCell($col.$row)->getValue();
                             $row++;
+                            $limit++;
+                            if(count($request->sub_offre)<$limit)
+                            {
+                                break;
+                            } 
                         }
-                    } 
+                        $row++;
+                    }
                     $data = new DataOffres();
                     $data->offres_id = $request->offres_id;
                     $data->realisation_date = $request->date;
