@@ -42,7 +42,7 @@ class DashboardController extends Controller
                 $comrate += $datacom->realisation_rate;
                 $comrest += $datacom->rest_per_objectifs;
             }
-            $comObjectifs += $tech->objectifs;
+            $comObjectifs += $com->objectifs;
         }
         $fixe = QualityStatistics::where('type','Fixe')->get();
         $fixesdgt_raise = 0;
