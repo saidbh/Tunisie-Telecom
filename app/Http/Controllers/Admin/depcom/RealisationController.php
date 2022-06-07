@@ -110,12 +110,12 @@ class RealisationController extends Controller
                             $TotalCell += $spreadsheet->getActiveSheet()->getCell($col.$row)->getValue();
                             $row++;
                             $limit++;
-                            if(count($request->sub_offre)<$limit)
-                            {
-                                break;
-                            } 
                         }
                         $row++;
+                        if(count($request->sub_offre)<$limit)
+                        {
+                            break;
+                        } 
                     }
                     $data = new DataOffres();
                     $data->offres_id = $request->offres_id;
