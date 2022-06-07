@@ -269,48 +269,50 @@ class RealisationController extends Controller
                     break;
                 case(9):
                 case(10):
-                    for ($i = 'a'; $i < 'zz'; $i++)
+                     $row = 0;
+                    for($i=0;$i<=1000;$i++)
                     {
-                        $cell = $spreadsheet->getSheet(2)->getCell($i.'5')->getValue();
-                        if ($cell == 'Demandes effectuées')
+                        if($spreadsheet->getSheet(2)->getCell($i.'5')->getValue() == 'Demandes effectuées')
                         {
-                            $subOffres = SubOffreCommercial::where('offre_commercial_id',$request->offres_id)->get();
-                            $TotalCell = 0;
-                            $limit = 0;
-                            foreach($subOffres as $sub)
-                            {
-                                $j = 0;
-                                $row = 6;
-                                do {
-                                    if($sub->name == $spreadsheet->getActiveSheet()->getCell('A'.$row)->getValue())
-                                    {
-                                        $TotalCell += $spreadsheet->getActiveSheet()->getCell($i.$row)->getValue();
-                                        $j++;
-                                        $row++;
-                                        $limit++;
-                                    }else
-                                    {
-                                        $j++;
-                                        $row++;
-                                    }
-                                    if($limit == count($subOffres) - 1)
-                                    {
-                                        break;
-                                    }
-                                } while ($j <= 1000);
-                            }
-                            $rate = $TotalCell / $request->objectifs * 100;
-                            $rest = $request->objectifs - $TotalCell;
-                            $data = new DataOffres();
-                            $data->offres_id = $request->offres_id;
-                            $data->realisation_date = $request->date;
-                            $data->realisation = $TotalCell;
-                            $data->realisation_rate = $rate;
-                            $data->rest_per_objectifs = $rest;
-                            $data->save();
-                            break;
+                            $row = $i;
                         }
                     }
+                    $subOffres = SubOffreCommercial::where('offre_commercial_id',$request->offresCom_id)->get();
+                    $TotalCell = 0;
+                    $array = [];
+                    $limit = 0;
+                    $offres = array();
+                    foreach($request->sub_offre as $sub)
+                    {
+                        array_push($offres,$sub);
+                    }
+                    for($j=0;$j<=200;$j++)
+                    {   
+                        if(in_array($spreadsheet->getActiveSheet()->getCell('A'.$row)->getValue(), $offres))
+                        {
+                            array_push($array,$spreadsheet->getSheet(2)->getCell($col.$row)->getValue());
+                            $TotalCell += $spreadsheet->getSheet(2)->getCell($j.$row)->getValue();
+                            $row++;
+                            $limit++;
+                        }else
+                        {
+                            $row++;
+                        }
+                        if(count($request->sub_offre) + 1 <= $limit + 1)
+                        {
+                            break;
+                        } 
+                    } 
+                    $rate = $TotalCell / $request->objectifs * 100;
+                    $rest = $request->objectifs - $TotalCell;
+                    $data = new DataOffres();
+                    $data->offres_id = $request->offres_id;
+                    $data->realisation_date = $request->date;
+                    $data->realisation = $TotalCell;
+                    $data->realisation_rate = $rate;
+                    $data->rest_per_objectifs = $rest;
+                    $data->save();
+                    break;
                     break;
             }
 
