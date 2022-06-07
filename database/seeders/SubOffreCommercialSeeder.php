@@ -39,8 +39,8 @@ class SubOffreCommercialSeeder extends Seeder
             array('id' => '19','offre_commercial_id' => '3','name' => 'DimaNet Corporate','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '20','offre_commercial_id' => '3','name' => 'Dimanet Optica','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '21','offre_commercial_id' => '3','name' => 'Nouvelle Offre Dimanet 4G','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '22','offre_commercial_id' => '3','name' => 'Pack clé prépayé','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '23','offre_commercial_id' => '3','name' => 'PRE-pack cle 4G','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '22','offre_commercial_id' => '3','name' => 'Pack cle prepaye','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '23','offre_commercial_id' => '3','name' => 'PRE-Pack cle 4G','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
 
             array('id' => '24','offre_commercial_id' => '4','name' => 'Netbox 4G DataOnly','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '25','offre_commercial_id' => '4','name' => 'Netbox prepayee','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
@@ -50,13 +50,13 @@ class SubOffreCommercialSeeder extends Seeder
 
             array('id' => '28','offre_commercial_id' => '6','name' => 'WAFFI VDSL 2020','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
 
-            array('id' => '29','offre_commercial_id' => '7','name' => 'Rapido 2020 GU FSI 20','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '29','offre_commercial_id' => '7','name' => 'Rapido 2020 GU FSI 20M','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '30','offre_commercial_id' => '7','name' => 'Rapido 2020 GU TT 100M','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '31','offre_commercial_id' => '7','name' => 'Rapido 2020 GU TT 20M','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '32','offre_commercial_id' => '7','name' => 'Rapido 2020 GU TT 50M','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
 
             array('id' => '33','offre_commercial_id' => '8','name' => 'Offre de gros VDSL hybride','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '34','offre_commercial_id' => '8','name' => 'Offre de gros VDSL Postpayé','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '34','offre_commercial_id' => '8','name' => 'Offre de gros VDSL Postpaye','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '35','offre_commercial_id' => '8','name' => 'Fixe smart VDSL','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '36','offre_commercial_id' => '8','name' => 'Fix waffi VDSL','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '37','offre_commercial_id' => '8','name' => 'Rapido Pro','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
@@ -68,7 +68,7 @@ class SubOffreCommercialSeeder extends Seeder
             array('id' => '42','offre_commercial_id' => '9','name' => 'PRE - Conso 500mil_TT','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '43','offre_commercial_id' => '9','name' => 'PRE - CSSM 35mil/min','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '44','offre_commercial_id' => '9','name' => 'PRE - Day Pass','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '45','offre_commercial_id' => '9','name' => 'PRE – Doublé','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '45','offre_commercial_id' => '9','name' => 'PRE – Double','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '46','offre_commercial_id' => '9','name' => 'PRE - Employe TT','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '47','offre_commercial_id' => '9','name' => 'PRE - EST 1000% New','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '48','offre_commercial_id' => '9','name' => 'PRE - offre 40','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
@@ -85,7 +85,7 @@ class SubOffreCommercialSeeder extends Seeder
 
             array('id' => '59','offre_commercial_id' => '10','name' => 'Forfait SELECT','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
             array('id' => '60','offre_commercial_id' => '10','name' => 'OPTICA','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
-            array('id' => '61','offre_commercial_id' => '10','name' => 'Privilège','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
+            array('id' => '61','offre_commercial_id' => '10','name' => 'Privilege','description' => NULL,'created_at' => '2022-05-13 00:40:58','updated_at' => '2022-05-13 00:40:58'),
         );
         DB::table('sub_commercial_offre')->insert($suboffre_commercial);
     }

@@ -148,7 +148,13 @@ class RealisationController extends Controller
                     $data->save(); 
                     break;
                 case(6):
-                        $TotalCell = $spreadsheet->getSheet(0)->getCell('C116')->getValue() + $spreadsheet->getSheet(0)->getCell('C118')->getValue();
+                    if($request->type == 'NI+RA')
+                    {
+                        $TotalCell = $spreadsheet->getSheet(0)->getCell('C116')->getValue();
+                    }elseif($request->type == 'Migration')
+                    {
+                        $TotalCell = $spreadsheet->getSheet(0)->getCell('C118')->getValue();
+                    }
                             $rate = $TotalCell / $request->objectifs * 100;
                             $rest = $request->objectifs - $TotalCell;
                             $data = new DataOffres();
