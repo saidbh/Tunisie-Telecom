@@ -166,15 +166,21 @@ class RealisationController extends Controller
                             $data->save();
                     break;
                 case(7): 
-                    $c1 = $spreadsheet->getSheet(0)->getCell('C32')->getValue();
-                    $c2 = $spreadsheet->getSheet(0)->getCell('C34')->getValue();
-                    $c3 = $spreadsheet->getSheet(0)->getCell('C44')->getValue();
-                    $c4 = $spreadsheet->getSheet(0)->getCell('C46')->getValue();
-                    $c5 = $spreadsheet->getSheet(0)->getCell('C56')->getValue();
-                    $c6 = $spreadsheet->getSheet(0)->getCell('C58')->getValue();
-                    $c7 = $spreadsheet->getSheet(0)->getCell('C68')->getValue();
-                    $c8 = $spreadsheet->getSheet(0)->getCell('C70')->getValue();
-                     $TotalCell = $c1 + $c2 + $c3 + $c4 + $c5 + $c6 + $c7 + $c8 ;
+                    if($request->type == 'NI+RA')
+                    {
+                        $c1 = $spreadsheet->getSheet(0)->getCell('C32')->getValue();
+                        $c3 = $spreadsheet->getSheet(0)->getCell('C44')->getValue();
+                        $c5 = $spreadsheet->getSheet(0)->getCell('C56')->getValue();
+                        $c7 = $spreadsheet->getSheet(0)->getCell('C68')->getValue();
+                        $TotalCell = $c1 + $c3 + $c5 + $c7 ;
+                    }elseif($request->type == 'Migration')
+                    {
+                        $c2 = $spreadsheet->getSheet(0)->getCell('C34')->getValue();
+                        $c4 = $spreadsheet->getSheet(0)->getCell('C46')->getValue();
+                        $c6 = $spreadsheet->getSheet(0)->getCell('C58')->getValue();
+                        $c8 = $spreadsheet->getSheet(0)->getCell('C70')->getValue();
+                        $TotalCell = $c2 + $c4 + $c6 + $c8 ;
+                    }
                     $rate = $TotalCell / $request->objectifs * 100;
                     $rest = $request->objectifs - $TotalCell;
                     $data = new DataOffres();

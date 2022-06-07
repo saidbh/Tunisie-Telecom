@@ -13,7 +13,6 @@
                                     <p class="text-white">
                                         Bienvenue dans la plateforme BI permettant le suivi des clés de performance liés à la gestion des ventes et des offres chez Tunisie Télécom 
                                     </p>
-                                    <button type="button" class="btn iq-bg-primary">Voir plus</button>
                                 </div>
                                 <div class="col-md-6 position-relative">
                                     <div class="an-img-two">
