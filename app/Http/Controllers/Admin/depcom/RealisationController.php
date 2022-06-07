@@ -96,7 +96,7 @@ class RealisationController extends Controller
                     $TotalCell = 0;
                     $limit = 0;
                     $array = [];
-                    $limit = 1;
+                    $limit = 0;
                     $offres = array();
                     foreach($request->sub_offre as $sub)
                     {
@@ -110,9 +110,11 @@ class RealisationController extends Controller
                             $TotalCell += $spreadsheet->getActiveSheet()->getCell($col.$row)->getValue();
                             $row++;
                             $limit++;
+                        }else
+                        {
+                            $row++;
                         }
-                        $row++;
-                        if(count($request->sub_offre)<$limit)
+                        if(count($request->sub_offre) + 1 <= $limit + 1)
                         {
                             break;
                         } 
