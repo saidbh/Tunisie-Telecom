@@ -291,7 +291,7 @@ class RealisationController extends Controller
                         if(in_array($spreadsheet->getActiveSheet()->getCell('A'.$row)->getValue(), $offres))
                         {
                             array_push($array,$spreadsheet->getSheet(2)->getCell($col.$row)->getValue());
-                            $TotalCell += $spreadsheet->getSheet(2)->getCell($j.$row)->getValue();
+                            $TotalCell += $spreadsheet->getSheet(2)->getCell($j+1.$row)->getValue();
                             $row++;
                             $limit++;
                         }else
