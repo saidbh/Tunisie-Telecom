@@ -313,7 +313,6 @@ class RealisationController extends Controller
                     $data->rest_per_objectifs = $rest;
                     $data->save();
                     break;
-                    break;
             }
 
         } catch (QueryException $e) {
