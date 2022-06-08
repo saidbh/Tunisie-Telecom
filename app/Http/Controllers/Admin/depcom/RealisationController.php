@@ -270,7 +270,7 @@ class RealisationController extends Controller
                 case(9):
                 case(10):
                      $row = 0;
-                    for($i=0;$i<=1000;$i++)
+                    for($i = 'A'; $i < 'ZZ'; $i++)
                     {
                         if($spreadsheet->getSheet(2)->getCell($i.'5')->getValue() == 'Demandes effectuées')
                         {
@@ -289,16 +289,15 @@ class RealisationController extends Controller
                     }
                     for($j=0;$j<=200;$j++)
                     {   
-                        if(in_array($spreadsheet->getActiveSheet()->getCell('A'.$row)->getValue(), $offres))
+                        if(in_array($spreadsheet->getSheet(2)->getCell('A'.$col)->getValue(), $offres))
                         {
-                            array_push($array,$spreadsheet->getSheet(2)->getCell($col.$row)->getValue());
-                            $TotalCell += $spreadsheet->getSheet(2)->getCell($col.$row)->getValue();
-                            $row++;
-                            $limit++;
+                            array_push($array,$spreadsheet->getSheet(2)->getCell($row.$col)->getValue());
+                            $TotalCell += $spreadsheet->getSheet(2)->getCell($row.$col)->getValue();
                             $col++;
+                            $limit++;
                         }else
                         {
-                            $row++;
+                            $col++;
                         }
                         if(count($request->sub_offre) + 1 <= $limit + 1)
                         {
